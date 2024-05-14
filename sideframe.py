@@ -2,7 +2,7 @@ import customtkinter as ctk
 from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
-from add_window import AddBookWindow
+from add_window import AddWindow
 
 
 class SideFrame(ctk.CTkFrame):
@@ -83,5 +83,4 @@ class SideFrame(ctk.CTkFrame):
     def __add_material(self, type: str):
         self.__add_var.set('Добавить')
 
-        if type == 'Книгу':
-            AddBookWindow()
+        AddWindow(type)

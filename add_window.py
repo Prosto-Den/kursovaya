@@ -7,8 +7,8 @@ from PIL import Image, ImageTk
 import os
 
 
-class AddBookWindow(ctk.CTkToplevel):
-    def __init__(self):
+class AddWindow(ctk.CTkToplevel):
+    def __init__(self, type: str):
         super().__init__()
 
         self.title('Add book')
@@ -24,6 +24,16 @@ class AddBookWindow(ctk.CTkToplevel):
         # widget for showing the picture
         self.__image = ctk.CTkLabel(self, text = '', image = self.__book_image)
 
+        self.__picture_path = './pictures/books/'
+
+        self.focus()
+        self.grab_set()
+
+        self.__create_layout(type)
+
+        self.mainloop()
+
+    def __init_book_window(self):
         # entry widgets
         self.__title = ctk.CTkEntry(self, placeholder_text = 'Название', font = ENTRY_FONT)
         self.__authors = ctk.CTkEntry(self, placeholder_text = 'Автор(ы)', font = ENTRY_FONT)
@@ -31,15 +41,36 @@ class AddBookWindow(ctk.CTkToplevel):
         self.__publish_year = ctk.CTkEntry(self, placeholder_text = 'Год издания', font = ENTRY_FONT)
         self.__amount = ctk.CTkEntry(self, placeholder_text = 'Количество', font = ENTRY_FONT)
 
-        self.__picture_path = './pictures/books/'
+    def __create_book_layout(self):
+        self.__init_book_window()
 
-        self.__create_layout()
+        self.__title.pack(fill = 'x', padx = 5, pady = 5)
+        self.__authors.pack(fill = 'x', padx = 5, pady = 5)
+        self.__publisher.pack(fill = 'x', padx = 5, pady = 5)
+        self.__publish_year.pack(fill = 'x', padx = 5, pady = 5)
+        self.__amount.pack(fill = 'x', padx = 5, pady = 5)
 
-        self.focus()
-        self.grab_set()
+        ctk.CTkButton(self, 
+                  text = 'Сохранить', 
+                  font = FONT,
+                  text_color = BTN_TEXT_COLOUR,
+                  fg_color = BTN_COLOUR,
+                  hover_color = HOVER_BTN_COLOUR, 
+                  command = self.__save_book_data).pack(pady = 10)
 
-        self.mainloop()
+    def __create_layout(self, type: str) -> None:
+        self.__image.pack(pady = 5)
 
+        ctk.CTkButton(self, 
+                  text = 'Выбрать изображение', 
+                  font = FONT,
+                  text_color = BTN_TEXT_COLOUR,
+                  fg_color = BTN_COLOUR,
+                  hover_color = HOVER_BTN_COLOUR, 
+                  command = self.__select_image).pack(pady = 5)
+        
+        if type == 'Книгу':
+            self.__create_book_layout()
 
 
     # select image for the book
@@ -73,7 +104,7 @@ class AddBookWindow(ctk.CTkToplevel):
 
             self.__image.configure(image = self.__book_image)
 
-    def __save_data(self):
+    def __save_book_data(self):
         title = self.__title.get()
         authors = self.__authors.get().split(',')
         publisher = self.__publisher.get()
@@ -95,27 +126,3 @@ class AddBookWindow(ctk.CTkToplevel):
         print(publisher)
         print(publish_year)
         print(amount)
-
-    def __create_layout(self):
-        self.__image.pack(pady = 5)
-        ctk.CTkButton(self, 
-                  text = 'Выбрать изображение', 
-                  font = FONT,
-                  text_color = BTN_TEXT_COLOUR,
-                  fg_color = BTN_COLOUR,
-                  hover_color = HOVER_BTN_COLOUR, 
-                  command = self.__select_image).pack(pady = 5)
-
-        self.__title.pack(fill = 'x', padx = 5, pady = 5)
-        self.__authors.pack(fill = 'x', padx = 5, pady = 5)
-        self.__publisher.pack(fill = 'x', padx = 5, pady = 5)
-        self.__publish_year.pack(fill = 'x', padx = 5, pady = 5)
-        self.__amount.pack(fill = 'x', padx = 5, pady = 5)
-
-        ctk.CTkButton(self, 
-                  text = 'Сохранить', 
-                  font = FONT,
-                  text_color = BTN_TEXT_COLOUR,
-                  fg_color = BTN_COLOUR,
-                  hover_color = HOVER_BTN_COLOUR, 
-                  command = self.__save_data).pack(pady = 10)
