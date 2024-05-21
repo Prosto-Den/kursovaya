@@ -9,6 +9,7 @@ import json
 from convert_to_json import to_json
 
 
+# window for adding material info
 class AddMaterialWindow(ctk.CTkToplevel):
     def __init__(self, parent, type: str) -> None:
         super().__init__(master = parent)
@@ -156,19 +157,21 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
     # save book data
     def __save_book_data(self) -> None:
-        title = self.__title.get()
-        authors = self.__authors.get().replace(' ', '').split(',')
-        publisher = self.__publisher.get()
+        title: str = self.__title.get()
+        authors: list[str] = self.__authors.get().replace(' ', '').split(',')
+        publisher: str = self.__publisher.get()
         publish_year = int(self.__publish_year.get())
         amount = int(self.__amount.get())
         price = float(self.__price.get())
         fine = float(self.__fine.get())
+        image_path: str = MATERIALS_PICTURE_PATH + self.__picture_name
+
 
         if title == '' or authors == '' or publisher == '' or publish_year == 0 or amount == '':
             self.__show_warning()
             return
 
-        data = to_json(title, 'Книга', amount, price, fine,
+        data = to_json(title, 'Книга', amount, price, fine, image_path,
                 authors = authors, 
                 publisher = publisher,
                 publish_year = publish_year)
@@ -178,18 +181,19 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
     # save newspaper data
     def __save_paper_data(self) -> None:
-        title = self.__title.get()
-        number = self.__number.get()
-        date = self.__date.get()
+        title: str = self.__title.get()
+        number: str = self.__number.get()
+        date: str = self.__date.get()
         amount = int(self.__amount.get())
         price = float(self.__price.get())
         fine = float(self.__fine.get())
+        image_path: str = MATERIALS_PICTURE_PATH + self.__picture_name
 
         if title == '' or number == '' or date == '' or amount == '':
             self.__show_warning()
             return
         
-        data = to_json(title, 'Газета', amount, price, fine,
+        data = to_json(title, 'Газета', amount, price, fine, image_path,
                        number = number,
                        date = date)
 
@@ -198,19 +202,20 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
     # save magazine data
     def __save_magazine_data(self) -> None:
-        title = self.__title.get()
-        number = self.__number.get()
-        date = self.__date.get()
+        title: str = self.__title.get()
+        number: str = self.__number.get()
+        date: str = self.__date.get()
         publisher = self.__publisher.get()
         amount = int(self.__amount.get())
         price = float(self.__price.get())
         fine = float(self.__fine.get())
+        image_path: str = MATERIALS_PICTURE_PATH + self.__picture_name
 
         if title == '' or number == '' or date == '' or publisher == '' or amount == '':
             self.__show_warning()
             return
         
-        data = to_json(title, 'Журнал', amount, price, fine, 
+        data = to_json(title, 'Журнал', amount, price, fine, image_path, 
                        number = number, date = date, publisher = publisher)
         
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:

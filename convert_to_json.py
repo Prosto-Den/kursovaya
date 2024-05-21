@@ -1,13 +1,12 @@
-from json.encoder import encode_basestring
-
-def to_json(title: str, type: str, amount: int, price: float, fine: float, **kwargs) -> dict:
+def to_json(title: str, type: str, amount: int, price: float, fine: float, image_path: str, **kwargs) -> dict:
     data = {
         "title": title,
         "type": type,
         "info": None,
         "amount": amount,
         "price": price,
-        "fine": fine
+        "fine": fine,
+        "image_path": image_path
     }
 
     if type == 'Книга':
