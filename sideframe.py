@@ -2,7 +2,7 @@ import customtkinter as ctk
 from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
-from add_window import AddMaterialWindow
+from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
 from add_client import AddClientWindow
 
 class SideFrame(ctk.CTkFrame):
@@ -11,8 +11,6 @@ class SideFrame(ctk.CTkFrame):
                  end_pos: float,
                  menu_image: PhotoImage) -> None:
         super().__init__(parent)
-
-        self.__parent = parent
 
         # frame settings
         self.__width: float = abs(start_pos - end_pos)
@@ -81,11 +79,16 @@ class SideFrame(ctk.CTkFrame):
                           dropdown_hover_color = HOVER_BTN_COLOUR,
                           font = FONT,
                           command = self.__add_material).place(relx = 0, rely = 0.08, relwidth = 1, relheight = 0.05)
-        
+    
+    # open window to add the material
     def __add_material(self, type: str):
         self.__add_var.set('Добавить')
 
-        if type in ADD_VALUES[:3]:
-            AddMaterialWindow(self.__parent, type)
-        else:
-            AddClientWindow(type)
+        if type == ADD_VALUES[0]:
+            AddBookWindow()
+
+        elif type == ADD_VALUES[1]:
+            AddMagazineWindow()
+        
+        elif type == ADD_VALUES[2]:
+            AddNewsPaperWindow()
