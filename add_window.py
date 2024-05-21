@@ -5,6 +5,8 @@ from tkinter.filedialog import askopenfile
 import shutil
 from PIL import Image, ImageTk
 import os
+import json
+from convert_to_json import to_json
 
 
 class AddMaterialWindow(ctk.CTkToplevel):
@@ -12,12 +14,11 @@ class AddMaterialWindow(ctk.CTkToplevel):
         super().__init__(master = parent)
 
         self.title('Add book')
-        self.geometry('400x600')
+        self.geometry('500x700')
         self.resizable(False, False)
-        self.iconbitmap('./pictures/icon.ico')
 
         # load default picture
-        picture = Image.open('./pictures/books/default.png').resize((300, 300))
+        picture = Image.open(MATERIALS_PICTURE_PATH + 'default.png').resize((300, 300))
         self.__book_image = ImageTk.PhotoImage(picture)
         self.__picture_name: str = 'default.png'
 
@@ -25,9 +26,10 @@ class AddMaterialWindow(ctk.CTkToplevel):
         self.__title = ctk.CTkEntry(self, placeholder_text = 'Название', font = ENTRY_FONT)
         self.__image = ctk.CTkLabel(self, text = '', image = self.__book_image)
         self.__amount = ctk.CTkEntry(self, placeholder_text = 'Количество', font = ENTRY_FONT)
+        self.__price = ctk.CTkEntry(self, placeholder_text = 'Цена', font = ENTRY_FONT)
+        self.__fine = ctk.CTkEntry(self, placeholder_text = 'Штраф', font = ENTRY_FONT)
 
         self.focus()
-        self.grab_set()
 
         self.__create_layout(type)
 
@@ -64,6 +66,7 @@ class AddMaterialWindow(ctk.CTkToplevel):
         self.__number.pack(fill = 'x', padx = 5, pady = 5)
         self.__date.pack(fill = 'x', padx = 5, pady = 5)
 
+    # create layout for magazine
     def __create_magazine_layout(self):
         self.__init_magazine_window()
         self.__create_paper_layout()
@@ -72,6 +75,8 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
     # create the whole layout
     def __create_layout(self, type: str) -> None:
+        command = None
+
         self.__image.pack(pady = 5)
 
         ctk.CTkButton(self, 
@@ -86,14 +91,19 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
         if type == 'Книгу':
             self.__create_book_layout()
+            command = self.__save_book_data
 
         elif type == 'Газету':
             self.__create_paper_layout()
+            command = self.__save_paper_data
 
         elif type == 'Журнал':
             self.__create_magazine_layout()
+            command = self.__save_magazine_data
 
         self.__amount.pack(fill = 'x', pady = 5, padx = 5)
+        self.__price.pack(fill = 'x', pady = 5, padx = 5)
+        self.__fine.pack(fill = 'x', pady = 5, padx = 5)
 
         ctk.CTkButton(self, 
                   text = 'Сохранить', 
@@ -101,7 +111,7 @@ class AddMaterialWindow(ctk.CTkToplevel):
                   text_color = BTN_TEXT_COLOUR,
                   fg_color = BTN_COLOUR,
                   hover_color = HOVER_BTN_COLOUR, 
-                  command = self.__save_book_data).pack(pady = 10)
+                  command = command).pack(pady = 10)
 
 
     # select image for the book
@@ -135,6 +145,7 @@ class AddMaterialWindow(ctk.CTkToplevel):
 
             self.__image.configure(image = self.__book_image)
 
+    # show warning if not all fields are filled
     def __show_warning(self) -> None:
         CTkMessagebox(self, 
                           title = 'Внимание',
@@ -143,20 +154,64 @@ class AddMaterialWindow(ctk.CTkToplevel):
                           option_1 = 'OK',
                           font = FONT)
 
+    # save book data
     def __save_book_data(self) -> None:
         title = self.__title.get()
-        authors = self.__authors.get().split(',')
+        authors = self.__authors.get().replace(' ', '').split(',')
         publisher = self.__publisher.get()
-        publish_year = self.__publish_year.get()
-        amount = self.__amount.get()
+        publish_year = int(self.__publish_year.get())
+        amount = int(self.__amount.get())
+        price = float(self.__price.get())
+        fine = float(self.__fine.get())
 
         if title == '' or authors == '' or publisher == '' or publish_year == 0 or amount == '':
             self.__show_warning()
             return
 
-        print(MATERIALS_PICTURE_PATH + self.__picture_name)
-        print(title)
-        print(authors)
-        print(publisher)
-        print(publish_year)
-        print(amount)
+        data = to_json(title, 'Книга', amount, price, fine,
+                authors = authors, 
+                publisher = publisher,
+                publish_year = publish_year)
+        
+        with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
+            json.dump(data, file, indent = 4, ensure_ascii = False)
+
+    # save newspaper data
+    def __save_paper_data(self) -> None:
+        title = self.__title.get()
+        number = self.__number.get()
+        date = self.__date.get()
+        amount = int(self.__amount.get())
+        price = float(self.__price.get())
+        fine = float(self.__fine.get())
+
+        if title == '' or number == '' or date == '' or amount == '':
+            self.__show_warning()
+            return
+        
+        data = to_json(title, 'Газета', amount, price, fine,
+                       number = number,
+                       date = date)
+
+        with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
+            json.dump(data, file, indent = 4, ensure_ascii = False)
+
+    # save magazine data
+    def __save_magazine_data(self) -> None:
+        title = self.__title.get()
+        number = self.__number.get()
+        date = self.__date.get()
+        publisher = self.__publisher.get()
+        amount = int(self.__amount.get())
+        price = float(self.__price.get())
+        fine = float(self.__fine.get())
+
+        if title == '' or number == '' or date == '' or publisher == '' or amount == '':
+            self.__show_warning()
+            return
+        
+        data = to_json(title, 'Журнал', amount, price, fine, 
+                       number = number, date = date, publisher = publisher)
+        
+        with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
+            json.dump(data, file, indent = 4, ensure_ascii = False)

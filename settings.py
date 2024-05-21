@@ -12,6 +12,8 @@ ENTRY_FONT: tuple = ('Candara', 14)
 
 ADD_VALUES: Final[list[str]] = ['Книгу', 'Журнал', 'Газету', 'Клиента', 'Поставщика', 'Заказ']
 
-MATERIALS_PICTURE_PATH: Final[str] = './pictures/books/'
+MATERIALS_PICTURE_PATH: Final[str] = './pictures/materials/'
+
+DATA_PATH: Final[str] = './temp/'
 
 windows_flag: bool = False
