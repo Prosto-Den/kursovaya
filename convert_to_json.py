@@ -2,33 +2,11 @@ def to_json(title: str, type: str, amount: int, price: float, fine: float, image
     data = {
         "title": title,
         "type": type,
-        "info": None,
+        "info": kwargs,
         "amount": amount,
         "price": price,
         "fine": fine,
         "image_path": image_path
     }
-
-    if type == 'Книга':
-        info = {
-            "authors": kwargs["authors"],
-            "publisher": kwargs["publisher"],
-            "publish_year": kwargs["publish_year"]
-        }
-
-    elif type == 'Газета':
-        info = {
-            "number": kwargs["number"],
-            "date": kwargs["date"]
-        }
-
-    elif type == 'Журнал':
-        info = {
-            "number": kwargs["number"],
-            "date": kwargs["date"],
-            "publisher": kwargs["publisher"]
-        }
-
-    data['info'] = info
 
     return data

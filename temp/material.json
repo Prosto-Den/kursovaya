@@ -1,16 +1,13 @@
 {
-    "title": "Название",
-    "type": "Книга",
+    "title": "Название журнала",
+    "type": "Журнал",
     "info": {
-        "authors": [
-            "Автор1",
-            "Автор2"
-        ],
-        "publisher": "Издатель",
-        "publish_year": 2001
+        "number": 15,
+        "date": "20/05/2024",
+        "publisher": "Издатель"
     },
     "amount": 10,
-    "price": 150.0,
-    "fine": 3.5,
+    "price": 250.0,
+    "fine": 5.5,
     "image_path": "./pictures/materials/default.png"
 }

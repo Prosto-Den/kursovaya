@@ -16,6 +16,8 @@ class AddMagazineWindow(BaseAddWindow):
         self.__date = ctk.CTkEntry(self, placeholder_text = 'Дата выпуска', font = ENTRY_FONT)
         self.__publisher = ctk.CTkEntry(self, placeholder_text = 'Издательство', font = ENTRY_FONT)
 
+        self._saveBtn.configure(command = self.__save)
+
         self.__create_layout()
     
     def __create_layout(self):
@@ -35,7 +37,7 @@ class AddMagazineWindow(BaseAddWindow):
         amount: int = -1 if self._amount.get() == '' else int(self._amount.get())
         price: float = -1 if self._price.get() == '' else float(self._price.get())
         fine: float = -1 if self._fine.get() == '' else float(self._fine.get())
-        image_path: str = MATERIALS_PICTURE_PATH + self.__picture_name
+        image_path: str = MATERIALS_PICTURE_PATH + self._imageName
 
         if title == '' or number == -1 or date == '' or publisher == '' or amount == -1 or price == -1 or fine == -1:
             self._show_warning()

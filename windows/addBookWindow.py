@@ -43,7 +43,7 @@ class AddBookWindow(BaseAddWindow):
         image_path: str = MATERIALS_PICTURE_PATH + self._imageName
 
 
-        if title == '' or authors == '' or publisher == '' or publish_year == -1 or amount == -1:
+        if title == '' or authors == '' or publisher == '' or publish_year == -1 or amount == -1 or price == -1 or fine == -1:
             self._show_warning()
             return
 
