@@ -2,7 +2,7 @@ import customtkinter as ctk
 from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
-from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
+from materialWindows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
 from add_client import AddClientWindow
 
 class SideFrame(ctk.CTkFrame):

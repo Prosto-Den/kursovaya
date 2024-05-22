@@ -1,8 +1,8 @@
 import customtkinter as ctk
 from platform import system
 from settings import *
-from mainframe import MainFrame
-from menu import Menu
+from menu.mainframe import MainFrame
+from menu.menu import Menu
 import os
 
 if system() == 'Windows':

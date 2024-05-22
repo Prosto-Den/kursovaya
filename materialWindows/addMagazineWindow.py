@@ -1,4 +1,4 @@
-from windows.baseAddWindow import BaseAddWindow
+from materialWindows.baseAddWindow import BaseAddWindow
 import customtkinter as ctk
 from settings import *
 from convert_to_json import to_json

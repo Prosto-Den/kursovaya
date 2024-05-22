@@ -1,0 +1,3 @@
+from materialWindows.addBookWindow import AddBookWindow
+from materialWindows.addNewsPaperWindow import AddNewsPaperWindow
+from materialWindows.addMagazineWindow import AddMagazineWindow

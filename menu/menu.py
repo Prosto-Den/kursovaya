@@ -2,7 +2,7 @@ import customtkinter as ctk
 from tkinter import Misc
 from PIL import Image, ImageTk
 from settings import BTN_COLOUR, HOVER_BTN_COLOUR
-from sideframe import SideFrame
+from menu.sideframe import SideFrame
 
 
 class Menu(ctk.CTkFrame):
