@@ -1,13 +1,15 @@
 {
-    "title": "Название журнала",
-    "type": "Журнал",
+    "title": "Муму",
+    "type": "Книга",
     "info": {
-        "number": 15,
-        "date": "20/05/2024",
-        "publisher": "Издатель"
+        "authors": [
+            "И.С.Тургенев"
+        ],
+        "publisher": "Феникс",
+        "publish_year": 2024
     },
-    "amount": 10,
-    "price": 250.0,
-    "fine": 5.5,
-    "image_path": "./pictures/materials/default.png"
+    "amount": 20,
+    "price": 172.0,
+    "fine": 2.0,
+    "image_path": "./pictures/materials/муму.jpg"
 }

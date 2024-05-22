@@ -3,6 +3,7 @@ import customtkinter as ctk
 from settings import *
 from convert_to_json import to_json
 import json
+from dll.database import insertIntoMaterials
 
 
 class AddNewsPaperWindow(BaseAddWindow):
@@ -48,5 +49,5 @@ class AddNewsPaperWindow(BaseAddWindow):
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
             json.dump(data, file, indent = 4, ensure_ascii = False)
 
-
+        insertIntoMaterials()
 

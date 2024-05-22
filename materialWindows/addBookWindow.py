@@ -3,6 +3,7 @@ import customtkinter as ctk
 from settings import *
 import json
 from convert_to_json import to_json
+from dll.database import insertIntoMaterials
 
 class AddBookWindow(BaseAddWindow):
     def __init__(self):
@@ -54,3 +55,5 @@ class AddBookWindow(BaseAddWindow):
         
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
             json.dump(data, file, indent = 4, ensure_ascii = False)
+
+        insertIntoMaterials()

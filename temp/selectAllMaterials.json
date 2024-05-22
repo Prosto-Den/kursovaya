@@ -1,0 +1,32 @@
+{
+    "item_0": {
+        "amount": 5,
+        "fine": 3.0,
+        "id": 14,
+        "info": {
+            "authors": [
+                "А.С.Пушкин"
+            ],
+            "publish_year": 2023,
+            "publisher": "Эксмо"
+        },
+        "price": 180.0,
+        "title": "Евгений Онегин",
+        "type": "Книга"
+    },
+    "item_1": {
+        "amount": 20,
+        "fine": 2.0,
+        "id": 15,
+        "info": {
+            "authors": [
+                "И.С.Тургенев"
+            ],
+            "publish_year": 2024,
+            "publisher": "Феникс"
+        },
+        "price": 172.0,
+        "title": "Муму",
+        "type": "Книга"
+    }
+}
