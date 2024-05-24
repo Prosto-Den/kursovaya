@@ -3,7 +3,7 @@ from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
 from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
-from add_client import AddClientWindow
+from windows import AddClientWindow
 
 class SideFrame(ctk.CTkFrame):
     def __init__(self, parent: Misc, 

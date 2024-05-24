@@ -30,5 +30,19 @@
         "price": 259.0,
         "title": "1984",
         "type": "Книга"
+    },
+    "item_2": {
+        "amount": 10,
+        "fine": 2.5,
+        "id": 25,
+        "image_path": "./pictures/materials/Смешарикиjpg.jpg",
+        "info": {
+            "date": "24/04/2013",
+            "number": 1,
+            "publisher": "РИКИ"
+        },
+        "price": 150.0,
+        "title": "Смешарики",
+        "type": "Журнал"
     }
 }

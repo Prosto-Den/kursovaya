@@ -1,15 +1,13 @@
 {
-    "title": "1984",
-    "type": "Книга",
+    "title": "Смешарики",
+    "type": "Журнал",
     "info": {
-        "authors": [
-            "Джордж Оруэлл"
-        ],
-        "publisher": "АСТ",
-        "publish_year": 2022
+        "number": 1,
+        "date": "24/04/2013",
+        "publisher": "РИКИ"
     },
-    "amount": 20,
-    "price": 259.0,
-    "fine": 6.3,
-    "image_path": "./pictures/materials/1984.jpg"
+    "amount": 10,
+    "price": 150.0,
+    "fine": 2.5,
+    "image_path": "./pictures/materials/Смешарикиjpg.jpg"
 }

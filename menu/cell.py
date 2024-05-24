@@ -9,12 +9,12 @@ class Cell(ctk.CTkFrame):
         super().__init__(parent, fg_color = 'white',
                          border_color = 'black', border_width = 1, width = 300, height = 300)
 
-        image = ImageTk.PhotoImage(Image.open(data['image_path']).resize((200, 200)))
+        image = ImageTk.PhotoImage(Image.open(data['image_path']).resize((200, 250)))
 
         self.image = ctk.CTkLabel(self, text = '', image = image)
         self.label = ctk.CTkLabel(self, text = data['title'])
 
-        self.image.pack(pady = 5)
+        self.image.pack()
         self.label.pack()
 
         self.image.bind('<Button-1>', lambda _: InfoWindow(self, data))

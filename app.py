@@ -1,8 +1,8 @@
 import customtkinter as ctk
 from platform import system
 from settings import *
-from menu.mainframe import MainFrame
-from menu.menu import Menu
+from menu import MainFrame
+from menu import Menu
 from dll import connectToDB, disconnectFromDB, selectAllMaterials
 
 
