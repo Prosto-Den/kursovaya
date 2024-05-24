@@ -1,14 +1,16 @@
-from materialWindows.baseAddWindow import BaseAddWindow
+from windows.baseAddWindow import BaseAddWindow
 import customtkinter as ctk
 from settings import *
 from convert_to_json import to_json
 import json
-from dll.database import insertIntoMaterials
+from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddNewsPaperWindow(BaseAddWindow):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super().__init__(parent)
+
+        self.__parent = parent
 
         self.title('Добавить газету')
         self.geometry('500x640')
@@ -51,3 +53,6 @@ class AddNewsPaperWindow(BaseAddWindow):
 
         insertIntoMaterials()
 
+        selectAllMaterials()
+
+        self.__parent._parent.redraw_mainframe()

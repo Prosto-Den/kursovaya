@@ -7,14 +7,14 @@ import os
 import shutil
 
 class BaseAddWindow(ctk.CTkToplevel):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent):
+        super().__init__(master = parent)
 
         picture = Image.open(MATERIALS_PICTURE_PATH + 'default.png').resize((300, 300))
-        self.__materialImage = ImageTk.PhotoImage(picture)
+        self._materialImage = ImageTk.PhotoImage(picture)
         self._imageName = 'default.png'
 
-        self._image = ctk.CTkLabel(self, text = '', image = self.__materialImage)
+        self._image = ctk.CTkLabel(self, text = '', image = self._materialImage)
         self._imageBtn = ctk.CTkButton(self, 
                                       text = 'Выбрать изображение', 
                                       font = FONT,
@@ -64,9 +64,9 @@ class BaseAddWindow(ctk.CTkToplevel):
             path = MATERIALS_PICTURE_PATH + self._imageName
 
             image = Image.open(path).resize((300, 300))
-            self.__materialImage = ImageTk.PhotoImage(image)
+            self._materialImage = ImageTk.PhotoImage(image)
 
-            self._image.configure(image = self.__materialImage) 
+            self._image.configure(image = self._materialImage) 
 
     def _show_warning(self) -> None:
         CTkMessagebox(self, 

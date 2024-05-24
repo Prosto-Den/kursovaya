@@ -2,7 +2,7 @@ import customtkinter as ctk
 from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
-from materialWindows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
+from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
 from add_client import AddClientWindow
 
 class SideFrame(ctk.CTkFrame):
@@ -11,6 +11,8 @@ class SideFrame(ctk.CTkFrame):
                  end_pos: float,
                  menu_image: PhotoImage) -> None:
         super().__init__(parent)
+
+        self._parent = parent
 
         # frame settings
         self.__width: float = abs(start_pos - end_pos)
@@ -85,10 +87,10 @@ class SideFrame(ctk.CTkFrame):
         self.__add_var.set('Добавить')
 
         if type == ADD_VALUES[0]:
-            AddBookWindow()
+            AddBookWindow(self)
 
         elif type == ADD_VALUES[1]:
-            AddMagazineWindow()
+            AddMagazineWindow(self)
         
         elif type == ADD_VALUES[2]:
-            AddNewsPaperWindow()
+            AddNewsPaperWindow(self)

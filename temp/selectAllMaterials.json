@@ -3,6 +3,7 @@
         "amount": 5,
         "fine": 3.0,
         "id": 14,
+        "image_path": "./pictures/materials/default.png",
         "info": {
             "authors": [
                 "А.С.Пушкин"
@@ -18,6 +19,7 @@
         "amount": 20,
         "fine": 2.0,
         "id": 15,
+        "image_path": "./pictures/materials/муму.jpg",
         "info": {
             "authors": [
                 "И.С.Тургенев"
@@ -28,5 +30,112 @@
         "price": 172.0,
         "title": "Муму",
         "type": "Книга"
+    },
+    "item_2": {
+        "amount": 15,
+        "fine": 3.200000047683716,
+        "id": 16,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "authors": [
+                "Джордж Оруэлл"
+            ],
+            "publish_year": 2022,
+            "publisher": "АСТ"
+        },
+        "price": 259.0,
+        "title": "1984",
+        "type": "Книга"
+    },
+    "item_3": {
+        "amount": 10,
+        "fine": 1.0,
+        "id": 17,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "authors": [
+                "Тест"
+            ],
+            "publish_year": 2024,
+            "publisher": "Тест"
+        },
+        "price": 100.0,
+        "title": "Тест",
+        "type": "Книга"
+    },
+    "item_4": {
+        "amount": 2,
+        "fine": 1.0,
+        "id": 18,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "authors": [
+                "Автор"
+            ],
+            "publish_year": 2024,
+            "publisher": "Издатель"
+        },
+        "price": 10.0,
+        "title": "Тест1",
+        "type": "Книга"
+    },
+    "item_5": {
+        "amount": 1,
+        "fine": 1.0,
+        "id": 19,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "authors": [
+                "Автор"
+            ],
+            "publish_year": 2024,
+            "publisher": "Издатель"
+        },
+        "price": 1.0,
+        "title": "Тест2",
+        "type": "Книга"
+    },
+    "item_6": {
+        "amount": 1,
+        "fine": 1.0,
+        "id": 20,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "authors": [
+                "Автор"
+            ],
+            "publish_year": 1990,
+            "publisher": "Издатель "
+        },
+        "price": 1.0,
+        "title": "Тест 3",
+        "type": "Книга"
+    },
+    "item_7": {
+        "amount": 10,
+        "fine": 1.100000023841858,
+        "id": 21,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "date": "24/05/2024",
+            "number": 10
+        },
+        "price": 120.0,
+        "title": "Петербургский дневник",
+        "type": "Газета"
+    },
+    "item_8": {
+        "amount": 12,
+        "fine": 10.199999809265137,
+        "id": 22,
+        "image_path": "./pictures/materials/default.png",
+        "info": {
+            "date": "18/04/2023",
+            "number": 12,
+            "publisher": "Издатель"
+        },
+        "price": 500.0,
+        "title": "Журнал",
+        "type": "Журнал"
     }
 }

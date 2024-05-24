@@ -1,0 +1,4 @@
+from windows.addBookWindow import AddBookWindow
+from windows.addNewsPaperWindow import AddNewsPaperWindow
+from windows.addMagazineWindow import AddMagazineWindow
+from windows.infoWindow import InfoWindow

@@ -5,6 +5,7 @@ from menu.mainframe import MainFrame
 from menu.menu import Menu
 from dll import connectToDB, disconnectFromDB, selectAllMaterials
 
+
 if system() == 'Windows':
     windows_flag = True
 
@@ -34,13 +35,28 @@ class App(ctk.CTk):
         selectAllMaterials()
 
         # create layout
-        Menu(self).place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
-        MainFrame(self).place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
+        self.menu = Menu(self)
+        self.mainframe =  MainFrame(self)
+
+        self.__create_layout()
 
         self.mainloop()
 
         # disconnect from database
         disconnectFromDB()
+
+    def __create_layout(self):
+        self.menu.place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
+        self.mainframe.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
+
+    def redraw_mainframe(self):
+        self.mainframe.place_forget()
+
+        self.mainframe = MainFrame(self)
+
+        self.mainframe.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
+
+
 
 if __name__ == '__main__':
     App()
