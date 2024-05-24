@@ -1,13 +1,15 @@
 {
-    "title": "Журнал",
-    "type": "Журнал",
+    "title": "1984",
+    "type": "Книга",
     "info": {
-        "number": 12,
-        "date": "18/04/2023",
-        "publisher": "Издатель"
+        "authors": [
+            "Джордж Оруэлл"
+        ],
+        "publisher": "АСТ",
+        "publish_year": 2022
     },
-    "amount": 12,
-    "price": 500.0,
-    "fine": 10.2,
-    "image_path": "./pictures/materials/default.png"
+    "amount": 20,
+    "price": 259.0,
+    "fine": 6.3,
+    "image_path": "./pictures/materials/1984.jpg"
 }

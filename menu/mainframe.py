@@ -1,18 +1,28 @@
 import customtkinter as ctk
-from tkinter import Misc
 import json
 from menu.cell import Cell
+import os
+from settings import SELECT_ALL_MATERIALS_PATH
 
 
 class MainFrame(ctk.CTkScrollableFrame):
     def __init__(self, parent):
         super().__init__(parent, fg_color = 'white')
 
-        with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
-            self.__data = dict(json.load(file))
+        if os.stat(SELECT_ALL_MATERIALS_PATH).st_size != 0:
+            with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
+                self.__data = dict(json.load(file))
+        else:
+            self.__data = dict()
 
         columns = 3
-        rows = self.__data.__len__() // columns if self.__data.__len__() % columns == 0 else self.__data.__len__() // columns + 1
+
+        if self.__data.__len__() == 0:
+            rows = 1
+        elif self.__data.__len__() % columns == 0:
+            rows = self.__data.__len__() // columns
+        else:
+            rows = self.__data.__len__() // columns + 1
 
         self.__rowIndex = tuple(i for i in range(rows))
         self.__columnIndex = tuple(i for i in range(columns))

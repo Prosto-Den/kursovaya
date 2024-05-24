@@ -17,4 +17,6 @@ MATERIALS_PICTURE_PATH: Final[str] = './pictures/materials/'
 
 DATA_PATH: Final[str] = './temp/'
 
+SELECT_ALL_MATERIALS_PATH: Final[str] = DATA_PATH + 'selectAllMaterials.json'
+
 windows_flag: bool = False

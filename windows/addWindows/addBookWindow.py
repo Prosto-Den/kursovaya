@@ -1,4 +1,4 @@
-from windows.baseAddWindow import BaseAddWindow
+from windows.addWindows.baseAddWindow import BaseAddWindow
 import customtkinter as ctk
 from settings import *
 import json
@@ -43,7 +43,7 @@ class AddBookWindow(BaseAddWindow):
         publish_year: int = -1 if self.__publishYear.get() == '' else int(self.__publishYear.get())
         amount: int = -1 if self._amount.get() == '' else int(self._amount.get())
         price: float = -1 if self._price.get() == '' else float(self._price.get())
-        fine: float = -1 if self._fine.get() == '' else float(self._fine.get())
+        fine: float = -1 if self._fine.get() == '' else round(float(self._fine.get()), 2)
         image_path: str = MATERIALS_PICTURE_PATH + self._imageName
 
 
