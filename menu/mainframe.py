@@ -9,6 +9,9 @@ class MainFrame(ctk.CTkScrollableFrame):
     def __init__(self, parent):
         super().__init__(parent, fg_color = 'white')
 
+        self.__parent = parent
+
+        # если файл не пустой, открываем его
         if os.stat(SELECT_ALL_MATERIALS_PATH).st_size != 0:
             with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
                 self.__data = dict(json.load(file))
@@ -48,16 +51,5 @@ class MainFrame(ctk.CTkScrollableFrame):
                 column = 0
                 row += 1
 
-    def redraw_layout(self):
-        with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
-            data = dict(json.load(file))
-
-        if data == self.__data:
-            print('no changes')
-            return
-        else:
-            self.place_forget()
-
-            self.__data = data
-
-            self.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
+    def redraw_mainframe(self):
+        self.__parent.redraw_mainframe()

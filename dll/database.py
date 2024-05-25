@@ -11,5 +11,10 @@ insertIntoMaterials = lib.insertIntoMaterials
 # func for receiving data from materials table
 selectAllMaterials = lib.selectAllMaterials
 
+# func for updating material data
+updateMaterial = lib.updateMaterial
+
+deleteMaterial = lib.deleteMaterial
+
 # func for disconnection from database
 disconnectFromDB = lib.endConnection
