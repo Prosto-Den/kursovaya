@@ -1,16 +1,15 @@
 from windows.addWindows.baseAddWindow import BaseAddWindow
 import customtkinter as ctk
+from tkinter import Misc
 from settings import *
 import json
-from convert_to_json import to_json
+from convert_to_json import material_to_json
 from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddBookWindow(BaseAddWindow):
-    def __init__(self, parent):
+    def __init__(self, parent) -> None:
         super().__init__(parent)
-
-        self.__parent = parent
 
         self.title('Добавить книгу')
         self.geometry('500x700')
@@ -24,10 +23,8 @@ class AddBookWindow(BaseAddWindow):
 
         self.__createLayout()
 
-        self.focus_set()
-
     # show widgets on the screen
-    def __createLayout(self):
+    def __createLayout(self) -> None:
         self._create_base_layout_start()
 
         self.__authors.pack(fill = 'x', padx = 5, pady = 5)
@@ -36,7 +33,8 @@ class AddBookWindow(BaseAddWindow):
 
         self._create_base_layout_end()
 
-    def __save(self):
+    # save the data to the database
+    def __save(self) -> None:
         title: str = self._title.get()
         authors: list[str] = self.__authors.get().split(', ')
         publisher: str = self.__publisher.get()
@@ -51,7 +49,7 @@ class AddBookWindow(BaseAddWindow):
             self._show_warning()
             return
 
-        data = to_json(title, 'Книга', amount, price, fine, image_path,
+        data: dict = material_to_json(title, 'Книга', amount, price, fine, image_path,
                 authors = authors, 
                 publisher = publisher,
                 publish_year = publish_year)
@@ -59,8 +57,12 @@ class AddBookWindow(BaseAddWindow):
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
             json.dump(data, file, indent = 4, ensure_ascii = False)
 
+        # insert data
         insertIntoMaterials()
 
+        # receive data from database
         selectAllMaterials()
 
-        self.__parent._parent.redraw_mainframe()
+        # redraw mainframe
+        self._parent.redraw_mainframe()
+

@@ -37,7 +37,6 @@ class MainFrame(ctk.CTkScrollableFrame):
 
         self.__create_layout()
 
-
     def __create_layout(self):
         row = 0
         column = 0

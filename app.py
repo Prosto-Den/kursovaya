@@ -3,7 +3,7 @@ from platform import system
 from settings import *
 from menu import MainFrame
 from menu import Menu
-from dll import connectToDB, disconnectFromDB, selectAllMaterials
+from dll import connectToDB, disconnectFromDB, selectAllMaterials, selectAllClients
 import os
 
 
@@ -13,8 +13,9 @@ if system() == 'Windows':
     from ctypes import windll, byref, sizeof, c_int
 
 
+# main app class
 class App(ctk.CTk):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__(fg_color = 'white')
 
         # settings
@@ -38,9 +39,11 @@ class App(ctk.CTk):
 
         selectAllMaterials()
 
+        selectAllClients()
+
         # create layout
-        self.menu = Menu(self)
         self.mainframe = MainFrame(self)
+        self.menu = Menu(self)
 
         self.__create_layout()
 
@@ -49,19 +52,27 @@ class App(ctk.CTk):
         # disconnect from database
         disconnectFromDB()
 
+        # delete temporary files
         if 'material.json' in os.listdir(DATA_PATH):
             os.remove(DATA_PATH + 'material.json')
 
-    def __create_layout(self):
+        if 'client.json' in os.listdir(DATA_PATH):
+            os.remove(DATA_PATH + 'client.json')
+
+    # place widgets on the window
+    def __create_layout(self) -> None:
         self.menu.place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
         self.mainframe.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
 
-    def redraw_mainframe(self):
+    # redraw mainframe
+    def redraw_mainframe(self) -> None:
         self.mainframe.place_forget()
+        self.menu.place_forget()
 
         self.mainframe = MainFrame(self)
+        self.menu = Menu(self)
 
-        self.mainframe.place(relx = 0, rely = 0.2, relwidth = 1, relheight = 0.8)
+        self.__create_layout()
 
 
 if __name__ == '__main__':

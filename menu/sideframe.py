@@ -3,10 +3,11 @@ from tkinter import Misc
 from PIL.ImageTk import PhotoImage
 from settings import *
 from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
-from windows import AddClientWindow
+from windows import AddClientWindow, ClientsWindow
+
 
 class SideFrame(ctk.CTkFrame):
-    def __init__(self, parent: Misc, 
+    def __init__(self, parent, 
                  start_pos: float, 
                  end_pos: float,
                  menu_image: PhotoImage) -> None:
@@ -37,11 +38,9 @@ class SideFrame(ctk.CTkFrame):
     def animate(self):
         if self.__in_start_pos:
             self.__animate_forward()
-            self.__in_start_pos = False
 
         else:
             self.__animate_backward()
-            self.__in_start_pos = True
 
     # forward animation
     def __animate_forward(self):
@@ -49,6 +48,8 @@ class SideFrame(ctk.CTkFrame):
             self.__pos -= 0.01
             self.place(relx = self.__pos, rely = self.__rely, relwidth = self.__width, relheight = self.__relheight)
             self.after(10, self.__animate_forward)
+        
+        self.__in_start_pos = False
 
     # backward animation
     def __animate_backward(self):
@@ -57,11 +58,10 @@ class SideFrame(ctk.CTkFrame):
             self.place(relx = self.__pos, rely = self.__rely, relwidth = self.__width, relheight = self.__relheight)
             self.after(10, self.__animate_backward)
 
-        self.place()
+        self.__in_start_pos = True
 
     # create layout
     def __create_layout(self, menu_image: PhotoImage):
-
         # close menu btn
         ctk.CTkButton(self,
                       text = '',
@@ -81,16 +81,29 @@ class SideFrame(ctk.CTkFrame):
                           dropdown_hover_color = HOVER_BTN_COLOUR,
                           font = FONT,
                           command = self.__add_material).place(relx = 0, rely = 0.08, relwidth = 1, relheight = 0.05)
+        
+        ctk.CTkButton(self,
+                      text = 'Читатели',
+                      text_color = BTN_TEXT_COLOUR,
+                      fg_color = BTN_COLOUR,
+                      hover_color = HOVER_BTN_COLOUR,
+                      font = FONT,
+                      command = lambda: ClientsWindow(self._parent)).place(relx = 0, rely = 0.16, relwidth = 1, relheight = 0.05)
     
     # open window to add the material
     def __add_material(self, type: str):
         self.__add_var.set('Добавить')
 
         if type == ADD_VALUES[0]:
-            AddBookWindow(self)
+            AddBookWindow(self._parent)
 
         elif type == ADD_VALUES[1]:
-            AddMagazineWindow(self)
+            AddMagazineWindow(self._parent)
         
         elif type == ADD_VALUES[2]:
-            AddNewsPaperWindow(self)
+            AddNewsPaperWindow(self._parent)
+        
+        elif type == ADD_VALUES[3]:
+            AddClientWindow(self._parent)
+
+        self.__animate_backward()

@@ -1,16 +1,15 @@
 from windows.addWindows.baseAddWindow import BaseAddWindow
 import customtkinter as ctk
+from tkinter import Misc
 from settings import *
-from convert_to_json import to_json
+from convert_to_json import material_to_json
 import json
 from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddMagazineWindow(BaseAddWindow):
-    def __init__(self, parent):
+    def __init__(self, parent) -> None:
         super().__init__(parent)
-
-        self.__parent = parent
 
         self.title('Добавить журнал')
         self.geometry('500x670')
@@ -24,7 +23,8 @@ class AddMagazineWindow(BaseAddWindow):
 
         self.__create_layout()
     
-    def __create_layout(self):
+    # place elements on the frame
+    def __create_layout(self) -> None:
         self._create_base_layout_start()
 
         self.__number.pack(fill = 'x', padx = 5, pady = 5)
@@ -33,7 +33,8 @@ class AddMagazineWindow(BaseAddWindow):
 
         self._create_base_layout_end()
 
-    def __save(self):
+    # save data to the database
+    def __save(self) -> None:
         title: str = self._title.get()
         number: int = -1 if self.__number.get() == '' else int(self.__number.get())
         date: str = self.__date.get()
@@ -47,14 +48,17 @@ class AddMagazineWindow(BaseAddWindow):
             self._show_warning()
             return
         
-        data = to_json(title, 'Журнал', amount, price, fine, image_path, 
+        data: dict = material_to_json(title, 'Журнал', amount, price, fine, image_path, 
                        number = number, date = date, publisher = publisher)
         
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
             json.dump(data, file, indent = 4, ensure_ascii = False)
 
+        # insert data to the database
         insertIntoMaterials()
 
+        # receive data from database
         selectAllMaterials()
 
-        self.__parent._parent.redraw_mainframe()
+        # update mainframe
+        self._parent.redraw_mainframe()

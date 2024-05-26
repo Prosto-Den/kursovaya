@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from tkinter import Misc
 from settings import *
 from PIL import Image, ImageTk
 from tkinter.filedialog import askopenfile
@@ -6,13 +7,16 @@ from CTkMessagebox import CTkMessagebox
 import os
 import shutil
 
+
 class BaseAddWindow(ctk.CTkToplevel):
     def __init__(self, parent):
         super().__init__(master = parent)
 
+        self._parent = parent
+
         picture = Image.open(MATERIALS_PICTURE_PATH + 'default.png').resize((300, 300))
         self._materialImage = ImageTk.PhotoImage(picture)
-        self._imageName = 'default.png'
+        self._imageName: str = 'default.png'
 
         self._image = ctk.CTkLabel(self, text = '', image = self._materialImage)
         self._imageBtn = ctk.CTkButton(self, 
@@ -61,7 +65,7 @@ class BaseAddWindow(ctk.CTkToplevel):
             else:
                 shutil.copy(file_path.name, MATERIALS_PICTURE_PATH)
 
-            path = MATERIALS_PICTURE_PATH + self._imageName
+            path: str = MATERIALS_PICTURE_PATH + self._imageName
 
             image = Image.open(path).resize((300, 300))
             self._materialImage = ImageTk.PhotoImage(image)
@@ -77,13 +81,13 @@ class BaseAddWindow(ctk.CTkToplevel):
                           font = FONT)
     
     # create start base layout (similar to all windows)
-    def _create_base_layout_start(self):
+    def _create_base_layout_start(self) -> None:
         self._image.pack(fill = 'x', padx = 5, pady = 5)
         self._imageBtn.pack(fill = 'x', padx = 5, pady = 5)
         self._title.pack(fill = 'x', padx = 5, pady = 5)
 
     # create end base layout (similar to all windows)
-    def _create_base_layout_end(self):
+    def _create_base_layout_end(self) -> None:
         self._amount.pack(fill = 'x', padx = 5, pady = 5)
         self._price.pack(fill = 'x', padx = 5, pady = 5)
         self._fine.pack(fill = 'x', padx = 5, pady = 5)

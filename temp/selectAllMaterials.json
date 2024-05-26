@@ -1,22 +1,24 @@
 {
     "item_0": {
-        "amount": 10,
-        "fine": 2.5,
-        "id": 25,
-        "image_path": "./pictures/materials/Смешарикиjpg.jpg",
+        "amount": 15,
+        "fine": 3.200000047683716,
+        "id": 35,
+        "image_path": "./pictures/materials/1984.jpg",
         "info": {
-            "date": "24/04/2013",
-            "number": 1,
-            "publisher": "РИКИ"
+            "authors": [
+                "Джордж Оруэлл"
+            ],
+            "publish_year": 2022,
+            "publisher": "АСТ"
         },
-        "price": 150.0,
-        "title": "Смешарики",
-        "type": "Журнал"
+        "price": 178.0,
+        "title": "1984",
+        "type": "Книга"
     },
     "item_1": {
         "amount": 10,
         "fine": 2.5,
-        "id": 27,
+        "id": 36,
         "image_path": "./pictures/materials/муму.jpg",
         "info": {
             "authors": [
@@ -30,32 +32,17 @@
         "type": "Книга"
     },
     "item_2": {
-        "amount": 15,
-        "fine": 3.200000047683716,
-        "id": 28,
-        "image_path": "./pictures/materials/1984.jpg",
-        "info": {
-            "authors": [
-                "Джордж Оруэлл"
-            ],
-            "publish_year": 2022,
-            "publisher": "АСТ"
-        },
-        "price": 178.0,
-        "title": "1984",
-        "type": "Книга"
-    },
-    "item_3": {
         "amount": 10,
-        "fine": 5.300000190734863,
-        "id": 30,
-        "image_path": "./pictures/materials/default.png",
+        "fine": 2.5,
+        "id": 38,
+        "image_path": "./pictures/materials/Смешарикиjpg.jpg",
         "info": {
-            "date": "12/08/2003",
-            "number": 2
+            "date": "24/04/2013",
+            "number": 1,
+            "publisher": "РИКИ"
         },
         "price": 150.0,
-        "title": "Другая газета",
-        "type": "Газета"
+        "title": "Смешарики",
+        "type": "Журнал"
     }
 }

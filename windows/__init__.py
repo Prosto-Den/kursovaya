@@ -1,5 +1,4 @@
-from windows.addWindows import AddBookWindow
-from windows.addWindows import AddNewsPaperWindow
-from windows.addWindows import AddMagazineWindow
+from windows.addWindows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
 from windows.infoWindow import InfoWindow
-from windows.add_client import AddClientWindow
+from windows.addClient import AddClientWindow
+from windows.clientWindow import ClientsWindow

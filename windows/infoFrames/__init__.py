@@ -1,0 +1,3 @@
+from windows.infoFrames.bookInfoFrame import BookInfoFrame
+from windows.infoFrames.magazineInfoFrame import MagazineInfoFrame
+from windows.infoFrames.newsInfoFrame import NewsPaperInfoFrame
