@@ -32,8 +32,7 @@ class BookInfoFrame(BaseInfoFrame):
         ctk.CTkLabel(self, text = 'Издатель', fg_color = 'white', font = FONT).grid(row = 2, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Год издания', fg_color = 'white', font = FONT).grid(row = 3, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Количество', fg_color = 'white', font = FONT).grid(row = 4, column = 0, pady = 5)
-        ctk.CTkLabel(self, text = 'Цена', fg_color = 'white', font = FONT).grid(row = 5, column = 0, pady = 5)
-        ctk.CTkLabel(self, text = 'Штраф', fg_color = 'white', font = FONT).grid(row = 6, column = 0, pady = 5)
+        ctk.CTkLabel(self, text = 'Штраф', fg_color = 'white', font = FONT).grid(row = 5, column = 0, pady = 5)
 
         # размещаем поля ввода
         self._title.grid(row = 0, column = 1, pady = 5, padx = 5, sticky = 'ew')
@@ -41,12 +40,11 @@ class BookInfoFrame(BaseInfoFrame):
         self.__publisher.grid(row = 2, column = 1, pady = 5, padx = 5, sticky = 'ew')
         self.__publishYear.grid(row = 3, column = 1, pady = 5, padx = 5, sticky = 'ew')
         self._amount.grid(row = 4, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self._price.grid(row = 5, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self._fine.grid(row = 6, column = 1, pady = 5, padx = 5, sticky = 'ew')
+        self._fine.grid(row = 5, column = 1, pady = 5, padx = 5, sticky = 'ew')
 
         # размещаем кнопки
-        self._updateBtn.grid(row = 7, column = 0, sticky = 'ew', padx = 5)
-        self._deleteBtn.grid(row = 7, column = 1, sticky = 'ew', padx = 5)
+        self._updateBtn.grid(row = 6, column = 0, sticky = 'ew', padx = 5)
+        self._deleteBtn.grid(row = 6, column = 1, sticky = 'ew', padx = 5)
 
     def __update(self, data: dict):
         try:
@@ -54,19 +52,17 @@ class BookInfoFrame(BaseInfoFrame):
             type: str = data['type']
             image_path: str = data['image_path']
 
-            title: str = self._titleVar.get() if self._title.get() != '' else data['title']
-            authors: list[str] = self.__authorsVar.get().split(',') if self.__authorsVar.get() != '' else data['info']['authors']
-            publisher: str = self.__publisherVar.get() if self.__publisherVar.get() != '' else data['info']['publisher']
+            title: str = self._titleVar.get()
+            authors: list[str] = self.__authorsVar.get().split(',')
+            publisher: str = self.__publisherVar.get()
             publishYear = int(self.__publishYearVar.get())
             amount = int(self._amountVar.get())
-            price = float(self._priceVar.get())
             fine = float(self._fineVar.get())
 
             updated_data: dict = material_to_json(id = id, 
                                    title = title, 
                                    type = type, 
                                    amount = amount, 
-                                   price = price, 
                                    fine = fine,
                                    image_path = image_path,
                                    publisher = publisher,

@@ -11,7 +11,7 @@ DELETE_BTN_TEXT_COLOUR: Final[str] = '#D40000'
 FONT: tuple = ('Candara', 20)
 ENTRY_FONT: tuple = ('Candara', 14)
 
-ADD_VALUES: Final[list[str]] = ['Книгу', 'Журнал', 'Газету', 'Читателя', 'Поставщика', 'Заказ']
+ADD_VALUES: Final[list[str]] = ['Книгу', 'Журнал', 'Газету', 'Читателя']
 
 MATERIALS_PICTURE_PATH: Final[str] = './pictures/materials/'
 

@@ -9,7 +9,7 @@ import shutil
 
 
 class BaseAddWindow(ctk.CTkToplevel):
-    def __init__(self, parent):
+    def __init__(self, parent: Misc):
         super().__init__(master = parent)
 
         self._parent = parent
@@ -29,7 +29,6 @@ class BaseAddWindow(ctk.CTkToplevel):
         
         self._title = ctk.CTkEntry(self, placeholder_text = 'Название', font = ENTRY_FONT)
         self._amount = ctk.CTkEntry(self, placeholder_text = 'Количество', font = ENTRY_FONT)
-        self._price = ctk.CTkEntry(self, placeholder_text = 'Цена', font = ENTRY_FONT)
         self._fine = ctk.CTkEntry(self, placeholder_text = 'Штраф', font = ENTRY_FONT)
         self._saveBtn = ctk.CTkButton(self, 
                                       text = 'Сохранить', 
@@ -89,7 +88,6 @@ class BaseAddWindow(ctk.CTkToplevel):
     # create end base layout (similar to all windows)
     def _create_base_layout_end(self) -> None:
         self._amount.pack(fill = 'x', padx = 5, pady = 5)
-        self._price.pack(fill = 'x', padx = 5, pady = 5)
         self._fine.pack(fill = 'x', padx = 5, pady = 5)
 
         self._saveBtn.pack(fill = 'x', padx = 5, pady = 5)

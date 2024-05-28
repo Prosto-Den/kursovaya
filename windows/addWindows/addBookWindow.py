@@ -8,7 +8,7 @@ from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddBookWindow(BaseAddWindow):
-    def __init__(self, parent) -> None:
+    def __init__(self, parent: Misc) -> None:
         super().__init__(parent)
 
         self.title('Добавить книгу')
@@ -40,16 +40,15 @@ class AddBookWindow(BaseAddWindow):
         publisher: str = self.__publisher.get()
         publish_year: int = -1 if self.__publishYear.get() == '' else int(self.__publishYear.get())
         amount: int = -1 if self._amount.get() == '' else int(self._amount.get())
-        price: float = -1 if self._price.get() == '' else float(self._price.get())
         fine: float = -1 if self._fine.get() == '' else round(float(self._fine.get()), 2)
         image_path: str = MATERIALS_PICTURE_PATH + self._imageName
 
 
-        if title == '' or authors == '' or publisher == '' or publish_year == -1 or amount == -1 or price == -1 or fine == -1:
+        if title == '' or authors == '' or publisher == '' or publish_year == -1 or amount == -1 or fine == -1:
             self._show_warning()
             return
 
-        data: dict = material_to_json(title, 'Книга', amount, price, fine, image_path,
+        data: dict = material_to_json(title, 'Книга', amount, fine, image_path,
                 authors = authors, 
                 publisher = publisher,
                 publish_year = publish_year)

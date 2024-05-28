@@ -4,6 +4,9 @@ from PIL.ImageTk import PhotoImage
 from settings import *
 from windows import AddBookWindow, AddMagazineWindow, AddNewsPaperWindow
 from windows import AddClientWindow, ClientsWindow
+from windows import BorrowWindows
+from windows import BorrowedBooksWindow
+from windows import DebtorsWindow
 
 
 class SideFrame(ctk.CTkFrame):
@@ -89,6 +92,30 @@ class SideFrame(ctk.CTkFrame):
                       hover_color = HOVER_BTN_COLOUR,
                       font = FONT,
                       command = lambda: ClientsWindow(self._parent)).place(relx = 0, rely = 0.16, relwidth = 1, relheight = 0.05)
+        
+        ctk.CTkButton(self,
+                      text = 'Выдать книгу',
+                      text_color = BTN_TEXT_COLOUR,
+                      fg_color = BTN_COLOUR,
+                      hover_color = HOVER_BTN_COLOUR,
+                      font = FONT,
+                      command = lambda: BorrowWindows(self._parent)).place(relx = 0, rely = 0.24, relwidth = 1, relheight = 0.05)
+        
+        ctk.CTkButton(self,
+                      text = 'Отданные книги',
+                      text_color = BTN_TEXT_COLOUR,
+                      fg_color = BTN_COLOUR,
+                      hover_color = HOVER_BTN_COLOUR,
+                      font = FONT,
+                      command = lambda: BorrowedBooksWindow(self._parent)).place(relx = 0, rely = 0.32, relwidth = 1, relheight = 0.05)
+        
+        ctk.CTkButton(self,
+                      text = 'Должники',
+                      text_color = BTN_TEXT_COLOUR,
+                      fg_color = BTN_COLOUR,
+                      hover_color = HOVER_BTN_COLOUR,
+                      font = FONT,
+                      command = lambda: DebtorsWindow(self._parent)).place(relx = 0, rely = 0.4, relwidth = 1, relheight = 0.05)
     
     # open window to add the material
     def __add_material(self, type: str):

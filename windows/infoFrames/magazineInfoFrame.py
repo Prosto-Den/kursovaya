@@ -30,39 +30,35 @@ class MagazineInfoFrame(BaseInfoFrame):
         ctk.CTkLabel(self, text = 'Дата выпуска', fg_color = 'white', font = FONT).grid(row = 2, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Издательство', fg_color = 'white', font = FONT).grid(row = 3, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Количество', fg_color = 'white', font = FONT).grid(row = 4, column = 0, pady = 5)
-        ctk.CTkLabel(self, text = 'Цена', fg_color = 'white', font = FONT).grid(row = 5, column = 0, pady = 5)
-        ctk.CTkLabel(self, text = 'Штраф', fg_color = 'white', font = FONT).grid(row = 6, column = 0, pady = 5)
+        ctk.CTkLabel(self, text = 'Штраф', fg_color = 'white', font = FONT).grid(row = 5, column = 0, pady = 5)
 
         self._title.grid(row = 0, column = 1, pady = 5, padx = 5, sticky = 'ew')
         self.__number.grid(row = 1, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self.__date.grid(row = 3, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self.__publisher.grid(row = 2, column = 1, pady = 5, padx = 5, sticky = 'ew')
+        self.__date.grid(row = 2, column = 1, pady = 5, padx = 5, sticky = 'ew')
+        self.__publisher.grid(row = 3, column = 1, pady = 5, padx = 5, sticky = 'ew')
         self._amount.grid(row = 4, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self._price.grid(row = 5, column = 1, pady = 5, padx = 5, sticky = 'ew')
-        self._fine.grid(row = 6, column = 1, pady = 5, padx = 5, sticky = 'ew')
+        self._fine.grid(row = 5, column = 1, pady = 5, padx = 5, sticky = 'ew')
 
-        self._updateBtn.grid(row = 7, column = 0, sticky = 'ew', padx = 5)
-        self._deleteBtn.grid(row = 7, column = 1, sticky = 'ew', padx = 5)
+        self._updateBtn.grid(row = 6, column = 0, sticky = 'ew', padx = 5)
+        self._deleteBtn.grid(row = 6, column = 1, sticky = 'ew', padx = 5)
 
     def __update(self, data: dict):
         try:
-            id = data['id']
-            type = data['type']
-            image_path = data['image_path']
+            id: int = data['id']
+            type: str = data['type']
+            image_path: str = data['image_path']
 
-            title = self._titleVar.get() if self._title.get() != '' else data['title']
+            title: str = self._titleVar.get()
             number = int(self.__numberVar.get())
-            date = self.__dateVar.get() if self.__dateVar.get() != '' else data['info']['date']
-            publisher = self.__publisher.get() if self.__publisher.get() != '' else data['info']['publisher']
+            date: str = self.__dateVar.get()
+            publisher = self.__publisher.get()
             amount = int(self._amountVar.get())
-            price = float(self._priceVar.get())
             fine = float(self._fineVar.get())
 
             updated_data = material_to_json(id = id, 
                                    title = title, 
                                    type = type, 
-                                   amount = amount, 
-                                   price = price, 
+                                   amount = amount,  
                                    fine = fine,
                                    image_path = image_path,
                                    number = number,

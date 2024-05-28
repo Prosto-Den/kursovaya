@@ -3,7 +3,7 @@ from platform import system
 from settings import *
 from menu import MainFrame
 from menu import Menu
-from dll import connectToDB, disconnectFromDB, selectAllMaterials, selectAllClients
+from dll import connectToDB, disconnectFromDB, selectAllMaterials, selectAllClients, selectAllClientMaterial, selectAllDebtors
 import os
 
 
@@ -40,6 +40,10 @@ class App(ctk.CTk):
         selectAllMaterials()
 
         selectAllClients()
+
+        selectAllClientMaterial()
+
+        selectAllDebtors()
 
         # create layout
         self.mainframe = MainFrame(self)

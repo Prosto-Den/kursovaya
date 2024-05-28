@@ -1,7 +1,6 @@
 import customtkinter as ctk
 import json
 from settings import *
-from windows.clientInfo import InfoClient
 from PIL import Image, ImageTk
 from CTkMessagebox import CTkMessagebox
 from dll import deleteClient, selectAllClients
@@ -44,15 +43,11 @@ class ClientLine(ctk.CTkFrame):
         self.__birthdayLbl.grid(row = 0, column = 2, sticky = 'nsew', padx = [5, 0], ipady = 2)
         self.__passportLbl.grid(row = 0, column = 3, sticky = 'nsew', padx = [5, 0], ipady = 2)
 
-        ctk.CTkButton(self, image = edit_image, 
-                      text = '', width = 20, 
-                      fg_color = BTN_COLOUR, 
-                      hover_color = HOVER_BTN_COLOUR).grid(row = 0, column = 4, sticky = 'w')
         ctk.CTkButton(self, image = delete_image, 
                       text = '', width = 20,
                       fg_color = BTN_COLOUR,
                       hover_color = HOVER_BTN_COLOUR,
-                      command = self.__delete).grid(row = 0, column = 4, sticky = 'e')
+                      command = self.__delete).grid(row = 0, column = 4, sticky = 'ew')
 
     def __delete(self):
         message = CTkMessagebox(self, title = f'Удалить {self.__nameLbl._text}?',
@@ -68,9 +63,6 @@ class ClientLine(ctk.CTkFrame):
 
             self.__parent.master.master.master.redraw()
 
-    def __update(self):
-        pass
-
 
 class ClientsWindow(ctk.CTkToplevel):
     def __init__(self, parent) -> None:
@@ -85,8 +77,6 @@ class ClientsWindow(ctk.CTkToplevel):
 
         self.__title = ctk.CTkFrame(self)
         self.__list = ctk.CTkScrollableFrame(self, fg_color = 'white')
-
-        print(self.__list.master)
 
         self.__create_title_layout()
         self.__create_list_layout()
@@ -108,12 +98,8 @@ class ClientsWindow(ctk.CTkToplevel):
         ctk.CTkLabel(self.__title, text = 'Опции', font = FONT).grid(row = 0, column = 4, sticky = 'ew', padx = [0, 8])
 
     def __create_list_layout(self):
-        index = 0
-
         for item in self.__data:
             ClientLine(self.__list, self.__data[item]).pack(fill = 'x')
-
-            index += 1
 
     def redraw(self):
         self.__title.pack_forget()

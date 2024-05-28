@@ -23,9 +23,23 @@ deleteMaterial = lib.deleteMaterial
 # func for inserting into clients table
 insertClient = lib.insertIntoClients
 
-updateClient = lib.updateClient
-
+# func for deleting the client
 deleteClient = lib.deleteClient
 
 # func for receiving data from clients
 selectAllClients = lib.selectAllClients
+
+# func for inserting data in material_client table
+insertBorrowBook = lib.insertBorrowBook
+
+# func for receiving all data from material_client table
+selectAllClientMaterial = lib.selectAllClientMaterial
+
+# func for deleting data from ckient_material
+deleteBorrow = lib.deleteBorrow
+
+# func for receiving all data from debtors
+selectAllDebtors = lib.selectAllDebtors
+
+insertIntoDebtors = lib.insertIntoDebtors
+

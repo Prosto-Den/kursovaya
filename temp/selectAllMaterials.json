@@ -1,5 +1,33 @@
 {
     "item_0": {
+        "amount": 10,
+        "fine": 2.5,
+        "id": 38,
+        "image_path": "./pictures/materials/Смешарикиjpg.jpg",
+        "info": {
+            "date": "24/04/2013",
+            "number": 1,
+            "publisher": "РИКИ"
+        },
+        "title": "Смешарики",
+        "type": "Журнал"
+    },
+    "item_1": {
+        "amount": 9,
+        "fine": 2.5,
+        "id": 36,
+        "image_path": "./pictures/materials/муму.jpg",
+        "info": {
+            "authors": [
+                "И. С. Тургенев"
+            ],
+            "publish_year": 2024,
+            "publisher": "Феникс"
+        },
+        "title": "Муму",
+        "type": "Книга"
+    },
+    "item_2": {
         "amount": 15,
         "fine": 3.200000047683716,
         "id": 35,
@@ -11,38 +39,7 @@
             "publish_year": 2022,
             "publisher": "АСТ"
         },
-        "price": 178.0,
         "title": "1984",
         "type": "Книга"
-    },
-    "item_1": {
-        "amount": 10,
-        "fine": 2.5,
-        "id": 36,
-        "image_path": "./pictures/materials/муму.jpg",
-        "info": {
-            "authors": [
-                "И. С. Тургенев"
-            ],
-            "publish_year": 2024,
-            "publisher": "Феникс"
-        },
-        "price": 125.0,
-        "title": "Муму",
-        "type": "Книга"
-    },
-    "item_2": {
-        "amount": 10,
-        "fine": 2.5,
-        "id": 38,
-        "image_path": "./pictures/materials/Смешарикиjpg.jpg",
-        "info": {
-            "date": "24/04/2013",
-            "number": 1,
-            "publisher": "РИКИ"
-        },
-        "price": 150.0,
-        "title": "Смешарики",
-        "type": "Журнал"
     }
 }

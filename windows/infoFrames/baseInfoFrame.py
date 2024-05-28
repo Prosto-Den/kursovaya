@@ -21,13 +21,11 @@ class BaseInfoFrame(ctk.CTkFrame):
         # переменные для хранения информации
         self._titleVar = ctk.StringVar(self, data['title'])
         self._amountVar = ctk.StringVar(self, data['amount'])
-        self._priceVar = ctk.StringVar(self, round(data['price'], 2))
         self._fineVar = ctk.StringVar(self, round(data['fine'], 2))
 
         # поля ввода
         self._title = ctk.CTkEntry(self, textvariable = self._titleVar, font = ENTRY_FONT)
         self._amount = ctk.CTkEntry(self, textvariable = self._amountVar, font = ENTRY_FONT)
-        self._price = ctk.CTkEntry(self, textvariable = self._priceVar, font = ENTRY_FONT)
         self._fine = ctk.CTkEntry(self, textvariable = self._fineVar, font = ENTRY_FONT)
 
         # кнопки

@@ -40,15 +40,14 @@ class AddMagazineWindow(BaseAddWindow):
         date: str = self.__date.get()
         publisher = self.__publisher.get()
         amount: int = -1 if self._amount.get() == '' else int(self._amount.get())
-        price: float = -1 if self._price.get() == '' else float(self._price.get())
         fine: float = -1 if self._fine.get() == '' else float(self._fine.get())
         image_path: str = MATERIALS_PICTURE_PATH + self._imageName
 
-        if title == '' or number == -1 or date == '' or publisher == '' or amount == -1 or price == -1 or fine == -1:
+        if title == '' or number == -1 or date == '' or publisher == '' or amount == -1 or fine == -1:
             self._show_warning()
             return
         
-        data: dict = material_to_json(title, 'Журнал', amount, price, fine, image_path, 
+        data: dict = material_to_json(title, 'Журнал', amount, fine, image_path, 
                        number = number, date = date, publisher = publisher)
         
         with open(DATA_PATH + 'material.json', 'w', encoding = 'utf-8') as file:
