@@ -22,7 +22,7 @@ class AddClientWindow(ctk.CTkToplevel):
                                             font = ENTRY_FONT)
         
         self.__passportEntry = ctk.CTkEntry(self,
-                                            placeholder_text = 'Пасспортные данные',
+                                            placeholder_text = 'Паспортные данные',
                                             font = ENTRY_FONT)
         
         self.__saveBtn = ctk.CTkButton(self, text = 'Сохранить', font = FONT,

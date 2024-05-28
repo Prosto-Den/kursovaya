@@ -1,13 +1,13 @@
 import customtkinter as ctk
-from tkinter import Misc
 from PIL import Image, ImageTk
 from windows import InfoWindow
 
 
 class Cell(ctk.CTkFrame):
-    def __init__(self, parent: Misc, data: str):
+    def __init__(self, parent, data: str):
         super().__init__(parent, fg_color = 'white',
-                         border_color = 'black', border_width = 1, width = 300, height = 300)
+                         border_color = 'black', border_width = 1, 
+                         width = 300, height = 300)
 
         self.__parent = parent
 
