@@ -74,6 +74,11 @@ class App(ctk.CTk):
         if 'client.json' in os.listdir(DATA_PATH):
             os.remove(DATA_PATH + 'client.json')
 
+        os.remove(DATA_PATH + 'selectAllClientMaterial.json')
+        os.remove(DATA_PATH + 'selectAllClients.json')
+        os.remove(DATA_PATH + 'selectAllDebtors.json')
+        os.remove(DATA_PATH + 'selectAllMaterials.json')
+
     # place widgets on the window
     def __create_layout(self) -> None:
         self.menu.place(relx = 0, rely = 0, relwidth = 1, relheight = 0.2)
