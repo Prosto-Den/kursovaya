@@ -4,7 +4,7 @@ import datetime as dt
 from tkinter import Misc
 from settings import *
 from PIL import Image, ImageTk
-from dll import deleteBorrow, selectAllClientMaterial, insertIntoDebtors, selectAllDebtors
+from dll import deleteBorrow, selectAllClientMaterial, insertIntoDebtors, selectAllDebtors, selectAllMaterials
 from CTkMessagebox import CTkMessagebox
 
 
@@ -61,6 +61,8 @@ class BorrowedLine(ctk.CTkFrame):
         deleteBorrow(self.__materialID, self.__clientID)
 
         selectAllClientMaterial()
+
+        selectAllMaterials()
 
         self.__parent.master.master.master.redraw()
 

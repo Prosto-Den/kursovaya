@@ -41,5 +41,5 @@ deleteBorrow = lib.deleteBorrow
 # func for receiving all data from debtors
 selectAllDebtors = lib.selectAllDebtors
 
+# func for insert into the debtors table
 insertIntoDebtors = lib.insertIntoDebtors
-

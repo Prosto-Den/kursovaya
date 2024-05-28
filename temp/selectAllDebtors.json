@@ -1,1 +1,20 @@
-null
+{
+    "item_0": {
+        "borrow_date": "2024-04-01",
+        "client_id": 7,
+        "expired": 43,
+        "material_id": 36,
+        "name": "Читатель",
+        "title": "Муму",
+        "total_fine": 107.5
+    },
+    "item_1": {
+        "borrow_date": "2024-04-29",
+        "client_id": 8,
+        "expired": 15,
+        "material_id": 35,
+        "name": "И. А. Павлов",
+        "title": "\"1984\"",
+        "total_fine": 48.0
+    }
+}

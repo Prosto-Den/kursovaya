@@ -10,7 +10,7 @@ from windows import DebtorsWindow
 
 
 class SideFrame(ctk.CTkFrame):
-    def __init__(self, parent, 
+    def __init__(self, parent: Misc, 
                  start_pos: float, 
                  end_pos: float,
                  menu_image: PhotoImage) -> None:
@@ -83,8 +83,8 @@ class SideFrame(ctk.CTkFrame):
                           button_hover_color = HOVER_OPTION_BTN_COLOUR,
                           dropdown_hover_color = HOVER_BTN_COLOUR,
                           font = FONT,
-                          command = self.__add_material).place(relx = 0, rely = 0.08, relwidth = 1, relheight = 0.05)
-        
+                          command = self.__open_add_window).place(relx = 0, rely = 0.08, relwidth = 1, relheight = 0.05)
+
         ctk.CTkButton(self,
                       text = 'Читатели',
                       text_color = BTN_TEXT_COLOUR,
@@ -118,7 +118,7 @@ class SideFrame(ctk.CTkFrame):
                       command = lambda: DebtorsWindow(self._parent)).place(relx = 0, rely = 0.4, relwidth = 1, relheight = 0.05)
     
     # open window to add the material
-    def __add_material(self, type: str):
+    def __open_add_window(self, type: str):
         self.__add_var.set('Добавить')
 
         if type == ADD_VALUES[0]:

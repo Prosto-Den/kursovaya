@@ -1,5 +1,5 @@
 def material_to_json(title: str, type: str, amount: int, 
-            fine: float, image_path: str, 
+            fine: float, image_path: str, room: int, rack: int, shelf: int,
             id: int = None, **kwargs) -> dict:
     data = {
         "title": title,
@@ -7,7 +7,10 @@ def material_to_json(title: str, type: str, amount: int,
         "info": kwargs,
         "amount": amount,
         "fine": fine,
-        "image_path": image_path
+        "image_path": image_path,
+        "room_id": room,
+        "rack_id": rack,
+        "shelf_id": shelf
     }
 
     if id is not None:

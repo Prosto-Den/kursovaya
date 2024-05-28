@@ -37,12 +37,16 @@ class App(ctk.CTk):
 
             exit()
 
+        # update file with materials
         selectAllMaterials()
 
+        # update file with clients
         selectAllClients()
 
+        # update file with borrowed materials
         selectAllClientMaterial()
 
+        # update file with debtors
         selectAllDebtors()
 
         # create layout

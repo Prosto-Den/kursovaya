@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from tkinter import Misc
+from tkinter import Misc, Event
 from PIL import Image, ImageTk
 from settings import BTN_COLOUR, HOVER_BTN_COLOUR
 from menu.sideframe import SideFrame
@@ -17,13 +17,19 @@ class Menu(ctk.CTkFrame):
 
         self.menu = SideFrame(parent, 1, 0.7, menu_image)
 
-        ctk.CTkEntry(self).grid(row = 0, column = 0, columnspan = 3, sticky = 'ew', padx = 5)
+        self.__searchVar = ctk.StringVar(self)
+
+        self.__search = ctk.CTkEntry(self, textvariable = self.__searchVar)
+
+        self.__search.grid(row = 0, column = 0, columnspan = 3, sticky = 'ew', padx = 5)
+
         ctk.CTkButton(self, 
                       text = '', 
                       image = filter_image,
                       width = 30,
                       fg_color = BTN_COLOUR,
                       hover_color = HOVER_BTN_COLOUR).grid(row = 0, column = 3, sticky = 'w')
+        
         ctk.CTkButton(self,
                       text = '',
                       image = menu_image,
@@ -31,4 +37,6 @@ class Menu(ctk.CTkFrame):
                       fg_color = BTN_COLOUR,
                       hover_color = HOVER_BTN_COLOUR,
                       command = self.menu.animate).grid(row = 0, column = 5, sticky = 'e', padx = 5)
+        
+        self.__search.bind('<KeyRelease>', lambda event: print(self.__searchVar.get()))
         

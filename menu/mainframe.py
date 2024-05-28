@@ -1,48 +1,50 @@
 import customtkinter as ctk
 import json
-from menu.cell import Cell
 import os
+from menu.cell import Cell
+from tkinter import Misc
 from settings import SELECT_ALL_MATERIALS_PATH
 
 
 class MainFrame(ctk.CTkScrollableFrame):
-    def __init__(self, parent):
+    def __init__(self, parent: Misc):
         super().__init__(parent, fg_color = 'white')
 
         self.__parent = parent
 
-        # если файл не пустой, открываем его
-        if os.stat(SELECT_ALL_MATERIALS_PATH).st_size != 0:
-            with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
-                self.__data = dict(json.load(file))
-        else:
-            self.__data = dict()
-
         columns = 3
+        
+        # если файл не пустой, открываем его
+        with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
+            data = json.load(file)
+        
+        data = dict(data) if data is not None else dict()
 
-        if self.__data.__len__() == 0:
+        if len(data) == 0:
             rows = 1
-        elif self.__data.__len__() % columns == 0:
-            rows = self.__data.__len__() // columns
-        else:
-            rows = self.__data.__len__() // columns + 1
 
-        self.__rowIndex = tuple(i for i in range(rows))
+        elif len(data) % columns == 0:
+            rows = len(data) // columns
+
+        else:
+            rows = len(data) // columns + 1
+
+        rowIndex = tuple(i for i in range(rows))
         self.__columnIndex = tuple(i for i in range(columns))
 
-        self.rowconfigure(self.__rowIndex,
+        self.rowconfigure(rowIndex,
                           weight = 1, uniform = 'a')
         
         self.columnconfigure(self.__columnIndex, weight = 1, uniform = 'a')
 
-        self.__create_layout()
+        self.__create_layout(data)
 
-    def __create_layout(self):
+    def __create_layout(self, data: dict):
         row = 0
         column = 0
 
-        for item in self.__data:
-            Cell(self, self.__data[item]).grid(row = row, column = column, pady = 5)
+        for item in data:
+            Cell(self, item).grid(row = row, column = column, pady = 5)
 
             column += 1
 

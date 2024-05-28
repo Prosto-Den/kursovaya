@@ -11,22 +11,29 @@ class BaseInfoFrame(ctk.CTkFrame):
 
         self._parent = parent
 
-        rows = data.__len__() + data['info'].__len__() - 3
+        rows = len(data) + len(data['info']) - 6
 
         rowIndex = tuple(i for i in range(rows))
 
         self.rowconfigure(rowIndex, weight = 1, uniform = 'a')
-        self.columnconfigure((0, 1), weight = 1, uniform = 'a')
+        self.columnconfigure((0, 1, 2, 3), weight = 1, uniform = 'a')
 
         # переменные для хранения информации
         self._titleVar = ctk.StringVar(self, data['title'])
         self._amountVar = ctk.StringVar(self, data['amount'])
         self._fineVar = ctk.StringVar(self, round(data['fine'], 2))
+        self._roomVar = ctk.StringVar(self, data['room_id'])
+        self._rackVar = ctk.StringVar(self, data['rack_id'])
+        self._shelfVar = ctk.StringVar(self, data['shelf_id'])
 
         # поля ввода
         self._title = ctk.CTkEntry(self, textvariable = self._titleVar, font = ENTRY_FONT)
         self._amount = ctk.CTkEntry(self, textvariable = self._amountVar, font = ENTRY_FONT)
         self._fine = ctk.CTkEntry(self, textvariable = self._fineVar, font = ENTRY_FONT)
+        self._room = ctk.CTkEntry(self, textvariable = self._roomVar, font = ENTRY_FONT)
+        self._rack = ctk.CTkEntry(self, textvariable = self._rackVar, font = ENTRY_FONT)
+        self._shelf = ctk.CTkEntry(self, textvariable = self._shelfVar, font = ENTRY_FONT)
+
 
         # кнопки
         self._updateBtn = ctk.CTkButton(self, text = 'Обновить', 
