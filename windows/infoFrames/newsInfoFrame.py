@@ -44,8 +44,8 @@ class NewsPaperInfoFrame(BaseInfoFrame):
         self._rack.grid(row = 2, column = 3, pady = 5, padx = 5, sticky = 'ew')
         self._shelf.grid(row = 3, column = 3, pady = 5, padx = 5, sticky = 'ew')
 
-        self._updateBtn.grid(row = 5, column = 0, sticky = 'ew', padx = 5)
-        self._deleteBtn.grid(row = 5, column = 1, sticky = 'ew', padx = 5)
+        self._updateBtn.grid(row = 5, column = 0, sticky = 'ew', padx = 5, columnspan = 2)
+        self._deleteBtn.grid(row = 5, column = 2, sticky = 'ew', padx = 5, columnspan = 2)
 
     # update data in the database
     def __update(self, data: dict):

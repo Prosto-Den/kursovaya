@@ -42,9 +42,20 @@ class MainFrame(ctk.CTkScrollableFrame):
     def __create_layout(self, data: dict):
         row = 0
         column = 0
+        types = list()
+
+        if self.__parent.bookVar.get():
+            types.append('Книга')
+
+        if self.__parent.newsVar.get():
+            types.append('Газета')
+
+        if self.__parent.magazineVar.get():
+            types.append('Журнал')
 
         for item in data:
-            if len(self.__parent.searchVar.get()) == 0 or self.__parent.searchVar.get() in data[item]['title']:
+            if (len(self.__parent.searchVar.get()) == 0 or self.__parent.searchVar.get() in data[item]['title']) and \
+                data[item]['type'] in types:
                 Cell(self, item).grid(row = row, column = column, pady = 5)
 
                 column += 1

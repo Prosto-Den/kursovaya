@@ -7,6 +7,8 @@ OPTION_BTN_COLOUR: Final[str] = '#C2FFCF'
 HOVER_OPTION_BTN_COLOUR: Final[str] = '#BAF5C7'
 BTN_TEXT_COLOUR: Final[str] = '#38A650'
 DELETE_BTN_TEXT_COLOUR: Final[str] = '#D40000'
+CHECK_BOX_COLOUR: Final[str] = '#57DE59'
+HOVER_CHECK_BOX_COLOUR: Final[str] = '#50CC52'
 
 FONT: tuple = ('Candara', 20)
 ENTRY_FONT: tuple = ('Candara', 14)

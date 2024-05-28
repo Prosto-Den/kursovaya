@@ -3,6 +3,7 @@ from tkinter import Misc
 from PIL import Image, ImageTk
 from settings import BTN_COLOUR, HOVER_BTN_COLOUR
 from menu.sideframe import SideFrame
+from windows import FilterWindow
 
 
 class Menu(ctk.CTkFrame):
@@ -28,7 +29,8 @@ class Menu(ctk.CTkFrame):
                       image = filter_image,
                       width = 30,
                       fg_color = BTN_COLOUR,
-                      hover_color = HOVER_BTN_COLOUR).grid(row = 0, column = 3, sticky = 'w')
+                      hover_color = HOVER_BTN_COLOUR,
+                      command = lambda: FilterWindow(parent)).grid(row = 0, column = 3, sticky = 'w')
         
         ctk.CTkButton(self,
                       text = '',
@@ -37,4 +39,4 @@ class Menu(ctk.CTkFrame):
                       fg_color = BTN_COLOUR,
                       hover_color = HOVER_BTN_COLOUR,
                       command = self.menu.animate).grid(row = 0, column = 5, sticky = 'e', padx = 5)
-        
+    

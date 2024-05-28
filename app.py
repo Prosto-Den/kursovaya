@@ -32,7 +32,12 @@ class App(ctk.CTk):
             windll.dwmapi.DwmSetWindowAttribute(HWND, 35, byref(c_int(TITLEBAR_COLOUR)), sizeof(c_int))
 
         self.searchVar = ctk.StringVar(self)
-        
+        self.bookVar = ctk.BooleanVar(self, value = True)
+        self.newsVar = ctk.BooleanVar(self, value = True)
+        self.magazineVar = ctk.BooleanVar(self, value = True)
+
+        self.searchOption = ctk.IntVar(self)
+
         # establish connection with dataBase
         if connectToDB() == -1:
             disconnectFromDB()

@@ -1,5 +1,5 @@
 def material_to_json(title: str, type: str, amount: int, 
-            fine: float, image_path: str, room: int, rack: int, shelf: int,
+            fine: float, image_path: str, room: int = 0, rack: int = 0, shelf: int = 0,
             id: int = None, **kwargs) -> dict:
     data = {
         "title": title,
