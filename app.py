@@ -31,6 +31,8 @@ class App(ctk.CTk):
 
             windll.dwmapi.DwmSetWindowAttribute(HWND, 35, byref(c_int(TITLEBAR_COLOUR)), sizeof(c_int))
 
+        self.searchVar = ctk.StringVar(self)
+        
         # establish connection with dataBase
         if connectToDB() == -1:
             disconnectFromDB()

@@ -51,7 +51,7 @@ class ClientLine(ctk.CTkFrame):
 
     def __delete(self):
         message = CTkMessagebox(self, title = f'Удалить {self.__nameLbl._text}?',
-                                message = 'Вы уверены, что хотите удалить материал из базы данных? Отменить действие будет невозможно!',
+                                message = 'Вы уверены, что хотите удалить читателя из базы данных? Отменить действие будет невозможно!',
                                 option_1 = 'Да',
                                 option_2 = 'Нет',
                                 icon = 'warning')

@@ -8,6 +8,7 @@ from dll import deleteBorrow, selectAllClientMaterial, insertIntoDebtors, select
 from CTkMessagebox import CTkMessagebox
 
 
+# строка с данными о забранных книгах
 class BorrowedLine(ctk.CTkFrame):
     def __init__(self, parent: Misc, data: dict):
         super().__init__(parent)
@@ -80,8 +81,7 @@ class BorrowedLine(ctk.CTkFrame):
                           icon = 'warning', sound = True)
 
 
-
-
+# окно с данными о забранныъ книгах
 class BorrowedBooksWindow(ctk.CTkToplevel):
     def __init__(self, parent: Misc):
         super().__init__(master = parent)

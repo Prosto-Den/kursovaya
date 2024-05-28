@@ -44,13 +44,14 @@ class MainFrame(ctk.CTkScrollableFrame):
         column = 0
 
         for item in data:
-            Cell(self, item).grid(row = row, column = column, pady = 5)
+            if len(self.__parent.searchVar.get()) == 0 or self.__parent.searchVar.get() in data[item]['title']:
+                Cell(self, item).grid(row = row, column = column, pady = 5)
 
-            column += 1
+                column += 1
 
-            if column not in self.__columnIndex:
-                column = 0
-                row += 1
+                if column not in self.__columnIndex:
+                    column = 0
+                    row += 1
 
     def redraw_mainframe(self):
         self.__parent.redraw_mainframe()
