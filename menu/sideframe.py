@@ -9,6 +9,7 @@ from windows import BorrowedBooksWindow
 from windows import DebtorsWindow
 
 
+# боковое меню
 class SideFrame(ctk.CTkFrame):
     def __init__(self, parent: Misc, 
                  start_pos: float, 
@@ -16,7 +17,7 @@ class SideFrame(ctk.CTkFrame):
                  menu_image: PhotoImage) -> None:
         super().__init__(parent)
 
-        self._parent = parent
+        self._parent: Misc = parent
 
         # frame settings
         self.__width: float = abs(start_pos - end_pos)
@@ -85,6 +86,7 @@ class SideFrame(ctk.CTkFrame):
                           font = FONT,
                           command = self.__open_add_window).place(relx = 0, rely = 0.08, relwidth = 1, relheight = 0.05)
 
+        # Просмотр информации о зарегистрированных читателях
         ctk.CTkButton(self,
                       text = 'Читатели',
                       text_color = BTN_TEXT_COLOUR,
@@ -93,6 +95,7 @@ class SideFrame(ctk.CTkFrame):
                       font = FONT,
                       command = lambda: ClientsWindow(self._parent)).place(relx = 0, rely = 0.16, relwidth = 1, relheight = 0.05)
         
+        # Выдача книги читателю
         ctk.CTkButton(self,
                       text = 'Выдать книгу',
                       text_color = BTN_TEXT_COLOUR,
@@ -101,6 +104,7 @@ class SideFrame(ctk.CTkFrame):
                       font = FONT,
                       command = lambda: BorrowWindows(self._parent)).place(relx = 0, rely = 0.24, relwidth = 1, relheight = 0.05)
         
+        # Просмотр всех отданных книг
         ctk.CTkButton(self,
                       text = 'Отданные книги',
                       text_color = BTN_TEXT_COLOUR,
@@ -109,6 +113,7 @@ class SideFrame(ctk.CTkFrame):
                       font = FONT,
                       command = lambda: BorrowedBooksWindow(self._parent)).place(relx = 0, rely = 0.32, relwidth = 1, relheight = 0.05)
         
+        # Просмотр должников
         ctk.CTkButton(self,
                       text = 'Должники',
                       text_color = BTN_TEXT_COLOUR,
@@ -116,6 +121,7 @@ class SideFrame(ctk.CTkFrame):
                       hover_color = HOVER_BTN_COLOUR,
                       font = FONT,
                       command = lambda: DebtorsWindow(self._parent)).place(relx = 0, rely = 0.4, relwidth = 1, relheight = 0.05)
+    
     
     # open window to add the material
     def __open_add_window(self, type: str):

@@ -7,6 +7,7 @@ from dll import connectToDB, disconnectFromDB, selectAllMaterials, selectAllClie
 import os
 
 
+# color the title bar, if the computer use Windows
 if system() == 'Windows':
     windows_flag = True
 
@@ -38,10 +39,12 @@ class App(ctk.CTk):
 
         self.searchOption = ctk.IntVar(self)
 
+        if 'temp' not in os.listdir('./'):
+            os.mkdir('temp')
+
         # establish connection with dataBase
         if connectToDB() == -1:
             disconnectFromDB()
-
             exit()
 
         # update file with materials
@@ -65,7 +68,7 @@ class App(ctk.CTk):
         self.mainloop()
 
         # disconnect from database
-        disconnectFromDB()
+        disconnectFromDB() 
 
         # delete temporary files
         if 'material.json' in os.listdir(DATA_PATH):

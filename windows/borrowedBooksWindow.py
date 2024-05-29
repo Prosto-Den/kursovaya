@@ -10,10 +10,10 @@ from CTkMessagebox import CTkMessagebox
 
 # строка с данными о забранных книгах
 class BorrowedLine(ctk.CTkFrame):
-    def __init__(self, parent: Misc, data: dict):
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(parent)
 
-        self.__parent = parent
+        self.__parent: Misc = parent
 
         self.rowconfigure(0, weight = 1)
         self.columnconfigure((0, 1), weight = 3, uniform = 'a')
@@ -62,6 +62,8 @@ class BorrowedLine(ctk.CTkFrame):
         deleteBorrow(self.__materialID, self.__clientID)
 
         selectAllClientMaterial()
+
+        selectAllDebtors()
 
         selectAllMaterials()
 

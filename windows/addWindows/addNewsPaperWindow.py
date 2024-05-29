@@ -8,7 +8,7 @@ from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddNewsPaperWindow(BaseAddWindow):
-    def __init__(self, parent) -> None:
+    def __init__(self, parent: Misc) -> None:
         super().__init__(parent)
 
         self.title('Добавить газету')
@@ -52,6 +52,8 @@ class AddNewsPaperWindow(BaseAddWindow):
 
         # insert data to the database
         insertIntoMaterials()
+
+        self._show_success()
 
         # receive all item from the database
         selectAllMaterials()

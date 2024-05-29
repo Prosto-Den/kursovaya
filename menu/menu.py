@@ -7,7 +7,7 @@ from windows import FilterWindow
 
 
 class Menu(ctk.CTkFrame):
-    def __init__(self, parent: Misc):
+    def __init__(self, parent: Misc) -> None:
         super().__init__(parent, corner_radius = 0)
 
         self.columnconfigure((0, 1, 2, 3, 4, 5), weight = 1, uniform = 'a')

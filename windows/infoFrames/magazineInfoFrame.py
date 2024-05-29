@@ -3,13 +3,14 @@ from settings import *
 from convert_to_json import material_to_json
 from dll.database import selectAllMaterials, updateMaterial
 from CTkMessagebox import CTkMessagebox
+from tkinter import Misc
 import customtkinter as ctk
 import json
 
 
 # рамка для вывода информации о журнале
 class MagazineInfoFrame(BaseInfoFrame):
-    def __init__(self, parent, data: dict):
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(parent, data)
 
         self.__numberVar = ctk.StringVar(self, data['info']['number'])
@@ -24,7 +25,7 @@ class MagazineInfoFrame(BaseInfoFrame):
 
         self.__create_layout()
 
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         ctk.CTkLabel(self, text = 'Название', fg_color = 'white', font = FONT).grid(row = 0, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Номер выпуска', fg_color = 'white', font = FONT).grid(row = 1, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Дата выпуска', fg_color = 'white', font = FONT).grid(row = 2, column = 0, pady = 5)
@@ -50,7 +51,7 @@ class MagazineInfoFrame(BaseInfoFrame):
         self._updateBtn.grid(row = 6, column = 0, sticky = 'ew', padx = 5, columnspan = 2)
         self._deleteBtn.grid(row = 6, column = 2, sticky = 'ew', padx = 5, columnspan = 2)
 
-    def __update(self, data: dict):
+    def __update(self, data: dict) -> None:
         try:
             id: int = data['id']
             type: str = data['type']

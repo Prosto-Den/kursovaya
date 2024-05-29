@@ -8,7 +8,7 @@ from dll.database import insertIntoMaterials, selectAllMaterials
 
 
 class AddMagazineWindow(BaseAddWindow):
-    def __init__(self, parent) -> None:
+    def __init__(self, parent: Misc) -> None:
         super().__init__(parent)
 
         self.title('Добавить журнал')
@@ -55,6 +55,8 @@ class AddMagazineWindow(BaseAddWindow):
 
         # insert data to the database
         insertIntoMaterials()
+
+        self._show_success()
 
         # receive data from database
         selectAllMaterials()

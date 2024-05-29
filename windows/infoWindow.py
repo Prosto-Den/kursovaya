@@ -7,7 +7,7 @@ from settings import *
 
 # окно с информацией о текстовом материале
 class InfoWindow(ctk.CTkToplevel):
-    def __init__(self, parent, item: str):
+    def __init__(self, parent, item: str) -> None:
         super().__init__(master = parent)
 
         with open('./temp/selectAllMaterials.json', encoding = 'utf-8') as file:
@@ -26,7 +26,7 @@ class InfoWindow(ctk.CTkToplevel):
 
         self.__create_layout(data)
 
-    def __create_layout(self, data: dict):
+    def __create_layout(self, data: dict) -> None:
         self.__image.pack()
 
         if data['type'] == 'Книга':
@@ -38,5 +38,5 @@ class InfoWindow(ctk.CTkToplevel):
         elif data['type'] == 'Журнал':
             MagazineInfoFrame(self, data).pack(expand = True, fill = 'both')
 
-    def redraw_mainframe(self):
+    def redraw_mainframe(self) -> None:
         self.__parent.redraw_mainframe()

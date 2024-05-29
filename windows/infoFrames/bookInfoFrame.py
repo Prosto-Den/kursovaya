@@ -3,13 +3,14 @@ from settings import *
 from convert_to_json import material_to_json
 from dll.database import selectAllMaterials, updateMaterial
 from CTkMessagebox import CTkMessagebox
+from tkinter import Misc
 import json
 import customtkinter as ctk
 
 
 # рамка для информации о книге
 class BookInfoFrame(BaseInfoFrame):
-    def __init__(self, parent, data: dict):
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(parent, data)
 
         authors = ', '.join(data['info']['authors'])
@@ -26,7 +27,7 @@ class BookInfoFrame(BaseInfoFrame):
 
         self.__create_layout()
 
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         ctk.CTkLabel(self, text = 'Название', fg_color = 'white', font = FONT).grid(row = 0, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Авторы', fg_color = 'white', font = FONT).grid(row = 1, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Издатель', fg_color = 'white', font = FONT).grid(row = 2, column = 0, pady = 5)
@@ -54,7 +55,7 @@ class BookInfoFrame(BaseInfoFrame):
         self._updateBtn.grid(row = 6, column = 0, sticky = 'ew', padx = 5, columnspan = 2)
         self._deleteBtn.grid(row = 6, column = 2, sticky = 'ew', padx = 5, columnspan = 2)
 
-    def __update(self, data: dict):
+    def __update(self, data: dict) -> None:
         try:
             id: int = data['id']
             type: str = data['type']

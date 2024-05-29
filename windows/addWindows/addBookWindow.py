@@ -59,6 +59,8 @@ class AddBookWindow(BaseAddWindow):
         # insert data
         insertIntoMaterials()
 
+        self._show_success()
+
         # receive data from database
         selectAllMaterials()
 

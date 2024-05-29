@@ -4,10 +4,12 @@ from settings import *
 from convert_to_json import client_to_json
 from CTkMessagebox import CTkMessagebox
 from dll.database import insertClient, selectAllClients
+from tkinter import Misc
 
 
+# window for adding new client
 class AddClientWindow(ctk.CTkToplevel):
-    def __init__(self, parent):
+    def __init__(self, parent: Misc) -> None:
         super().__init__(master = parent)
 
         self.title('Добавить читателя')
@@ -40,15 +42,25 @@ class AddClientWindow(ctk.CTkToplevel):
                           icon = 'cancel',
                           option_1 = 'OK',
                           font = FONT)
+    
+    def _show_success(self) -> None:
+        message = CTkMessagebox(self, 
+                      title = 'Успешно!',
+                      message = 'Читатель успешно добавлен!',
+                      icon = 'check',
+                      font = FONT)
+        
+        if message.get() == 'OK':
+            self.destroy()
 
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         self.__nameEntry.pack(fill = 'x', padx = 5, pady = 5)
         self.__birthDayEntry.pack(fill = 'x', padx = 5, pady = 5)
         self.__passportEntry.pack(fill = 'x', padx = 5, pady = 5)
         self.__saveBtn.pack(fill = 'x', padx = 5, pady = 5)
 
 
-    def __save(self):
+    def __save(self) -> None:
         name: str = self.__nameEntry.get()
         birthday: str = self.__birthDayEntry.get()
         passport: str = self.__passportEntry.get()
@@ -64,6 +76,8 @@ class AddClientWindow(ctk.CTkToplevel):
             json.dump(data, file, ensure_ascii = False, indent = 4)
 
         insertClient()
+
+        self._show_success()
 
         selectAllClients()
 

@@ -3,13 +3,14 @@ from settings import *
 from dll.database import selectAllMaterials, updateMaterial
 from convert_to_json import material_to_json
 from CTkMessagebox import CTkMessagebox
+from tkinter import Misc
 import customtkinter as ctk
 import json
 
 
 # рамка для информации о газете
 class NewsPaperInfoFrame(BaseInfoFrame):
-    def __init__(self, parent, data: dict) -> None:
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(parent, data)
 
         self.__numberVar = ctk.StringVar(self, data['info']['number'])
@@ -23,7 +24,7 @@ class NewsPaperInfoFrame(BaseInfoFrame):
         self.__create_layout()
     
     # place the widgets on the frame
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         ctk.CTkLabel(self, text = 'Название', fg_color = 'white', font = FONT).grid(row = 0, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Номер выпуска', fg_color = 'white', font = FONT).grid(row = 1, column = 0, pady = 5)
         ctk.CTkLabel(self, text = 'Дата выпуска', fg_color = 'white', font = FONT).grid(row = 2, column = 0, pady = 5)
@@ -48,7 +49,7 @@ class NewsPaperInfoFrame(BaseInfoFrame):
         self._deleteBtn.grid(row = 5, column = 2, sticky = 'ew', padx = 5, columnspan = 2)
 
     # update data in the database
-    def __update(self, data: dict):
+    def __update(self, data: dict) -> None:
         try:
             id = data['id']
             type = data['type']

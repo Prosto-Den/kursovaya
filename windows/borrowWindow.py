@@ -1,11 +1,13 @@
 import customtkinter as ctk
 import json
 from settings import *
+from tkinter import Misc
 from dll import insertBorrowBook, selectAllClientMaterial, selectAllMaterials
 
 
+# window for borrowing the materials
 class BorrowWindows(ctk.CTkToplevel):
-    def __init__(self, parent):
+    def __init__(self, parent: Misc) -> None:
         super().__init__(master = parent)
 
         self.title('Выдать книгу')
@@ -54,14 +56,14 @@ class BorrowWindows(ctk.CTkToplevel):
         self.__frame.pack(pady = 5, padx = 5, fill = 'both')
         self.__btn.pack(pady = 5, padx = 5)
 
-    def __create_frame_layout(self):
+    def __create_frame_layout(self) -> None:
         ctk.CTkLabel(self.__frame, text = 'Читатель', font = FONT).grid(row = 0, column = 0)
         ctk.CTkLabel(self.__frame, text = 'Материал', font = FONT).grid(row = 1, column = 0)
 
         self.__chooseClient.grid(row = 0, column = 1, sticky = 'news')
         self.__chooseMaterial.grid(row = 1, column = 1, sticky = 'news')
 
-    def __borrow(self):
+    def __borrow(self) -> None:
         id_client = int(self.__chooseClient.get().split(' | ')[0])
         id_material = int(self.__chooseMaterial.get().split(' | ')[0])
 

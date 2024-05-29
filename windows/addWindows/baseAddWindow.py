@@ -9,10 +9,10 @@ import shutil
 
 
 class BaseAddWindow(ctk.CTkToplevel):
-    def __init__(self, parent: Misc):
+    def __init__(self, parent: Misc) -> None:
         super().__init__(master = parent)
 
-        self._parent = parent
+        self._parent: Misc = parent
 
         picture = Image.open(MATERIALS_PICTURE_PATH + 'default.png').resize((300, 300))
         self._materialImage = ImageTk.PhotoImage(picture)
@@ -79,6 +79,16 @@ class BaseAddWindow(ctk.CTkToplevel):
                           option_1 = 'OK',
                           font = FONT)
     
+    def _show_success(self) -> None:
+        message = CTkMessagebox(self, 
+                      title = 'Успешно!',
+                      message = 'Материал успешно добавлен!',
+                      icon = 'check',
+                      font = FONT)
+        
+        if message.get() == 'OK':
+            self.destroy()
+
     # create start base layout (similar to all windows)
     def _create_base_layout_start(self) -> None:
         self._image.pack(fill = 'x', padx = 5, pady = 5)

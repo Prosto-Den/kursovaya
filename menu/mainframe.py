@@ -1,6 +1,5 @@
 import customtkinter as ctk
 import json
-import os
 from menu.cell import Cell
 from tkinter import Misc
 from settings import SELECT_ALL_MATERIALS_PATH

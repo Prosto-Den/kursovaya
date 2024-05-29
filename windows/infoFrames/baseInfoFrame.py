@@ -2,14 +2,15 @@ import customtkinter as ctk
 from settings import *
 from CTkMessagebox import CTkMessagebox
 from dll.database import selectAllMaterials, deleteMaterial
+from tkinter import Misc
 
 
 # базовая рамка
 class BaseInfoFrame(ctk.CTkFrame):
-    def __init__(self, parent, data: dict) -> None:
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(parent, fg_color = 'white')
 
-        self._parent = parent
+        self._parent: Misc = parent
 
         rows = len(data) + len(data['info']) - 6
 
@@ -49,8 +50,8 @@ class BaseInfoFrame(ctk.CTkFrame):
                                         hover_color = HOVER_BTN_COLOUR,
                                         command = lambda: self._delete(data))
     
-    # для удаления элемента их бд
-    def _delete(self, data: dict):
+    # для удаления элемента из бд
+    def _delete(self, data: dict) -> None:
         id = data['id']
 
         message = CTkMessagebox(self._parent, title = f'Удалить {data["title"]}?',

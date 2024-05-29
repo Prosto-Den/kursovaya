@@ -7,7 +7,7 @@ from tkinter import Misc
 
 # cell on the mainframe
 class Cell(ctk.CTkFrame):
-    def __init__(self, parent: Misc, item: str):
+    def __init__(self, parent: Misc, item: str) -> None:
         super().__init__(parent, fg_color = 'white',
                          border_color = 'black', border_width = 1, 
                          width = 300, height = 300)

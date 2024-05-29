@@ -1,12 +1,14 @@
 import customtkinter as ctk
+from tkinter import Misc
 from settings import *
 
 
+# select filters for searching
 class FilterWindow(ctk.CTkToplevel):
-    def __init__(self, parent):
+    def __init__(self, parent: Misc) -> None:
         super().__init__(master = parent)
 
-        self.__parent = parent
+        self.__parent: Misc = parent
 
         self.title('Фильтры')
         self.geometry('400x100')
@@ -17,7 +19,7 @@ class FilterWindow(ctk.CTkToplevel):
 
         self.__create_layout()
     
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         ctk.CTkLabel(self, text = 'По типу', font = FONT).grid(row = 0, column = 0, sticky = 'n')
 
         ctk.CTkCheckBox(self, text = 'Книга', 

@@ -7,11 +7,12 @@ from dll import deleteClient, selectAllClients
 from tkinter import Misc
 
 
+# line with client's data
 class ClientLine(ctk.CTkFrame):
-    def __init__(self, parent: Misc, data: dict):
+    def __init__(self, parent: Misc, data: dict) -> None:
         super().__init__(master = parent)
 
-        self.__parent = parent
+        self.__parent: Misc = parent
 
         self.rowconfigure(0, weight = 1)
         self.columnconfigure(0, weight = 1)
@@ -19,9 +20,9 @@ class ClientLine(ctk.CTkFrame):
         self.columnconfigure((2, 3), weight = 3, uniform = 'b')
         self.columnconfigure(4, weight = 2, uniform = 'b')
 
-        date = data['birthday'].split('-')[::-1]
+        date: list = data['birthday'].split('-')[::-1]
 
-        birthday = '/'.join(date)
+        birthday: str = '/'.join(date)
 
         self.__id: int = data['id']
         self.__idLbl = ctk.CTkLabel(self, text = data['id'], font = FONT)
@@ -31,7 +32,7 @@ class ClientLine(ctk.CTkFrame):
 
         self.__create_layout()
 
-    def __create_layout(self):
+    def __create_layout(self) -> None:
         edit = Image.open('./pictures/edit.png')
         delete = Image.open('./pictures/delete.png')
 
@@ -49,7 +50,8 @@ class ClientLine(ctk.CTkFrame):
                       hover_color = HOVER_BTN_COLOUR,
                       command = self.__delete).grid(row = 0, column = 4, sticky = 'ew')
 
-    def __delete(self):
+    # delete client from database
+    def __delete(self) -> None:
         message = CTkMessagebox(self, title = f'Удалить {self.__nameLbl._text}?',
                                 message = 'Вы уверены, что хотите удалить читателя из базы данных? Отменить действие будет невозможно!',
                                 option_1 = 'Да',
@@ -64,6 +66,7 @@ class ClientLine(ctk.CTkFrame):
             self.__parent.master.master.master.redraw()
 
 
+# show info about clients
 class ClientsWindow(ctk.CTkToplevel):
     def __init__(self, parent) -> None:
         super().__init__(master = parent)
@@ -71,9 +74,6 @@ class ClientsWindow(ctk.CTkToplevel):
         self.geometry('600x300')
         self.title('Читатели')
         self.resizable(False, False)
-
-        with open(DATA_PATH + 'selectAllClients.json', encoding = 'utf-8') as file:
-            self.__data = dict(json.load(file))
 
         self.__title = ctk.CTkFrame(self)
         self.__list = ctk.CTkScrollableFrame(self, fg_color = 'white')
@@ -84,7 +84,7 @@ class ClientsWindow(ctk.CTkToplevel):
         self.__title.pack(fill = 'both')
         self.__list.pack(expand = True, fill = 'both')
 
-    def __create_title_layout(self):
+    def __create_title_layout(self) -> None:
         self.__title.rowconfigure(0, weight = 1)
         self.__title.columnconfigure(0, weight = 1)
         self.__title.columnconfigure(1, weight = 4, uniform = 'b')
@@ -97,19 +97,20 @@ class ClientsWindow(ctk.CTkToplevel):
         ctk.CTkLabel(self.__title, text = 'Паспорт', font = FONT).grid(row = 0, column = 3, sticky = 'news')
         ctk.CTkLabel(self.__title, text = 'Опции', font = FONT).grid(row = 0, column = 4, sticky = 'ew', padx = [0, 8])
 
-    def __create_list_layout(self):
-        for item in self.__data:
-            ClientLine(self.__list, self.__data[item]).pack(fill = 'x')
+    def __create_list_layout(self) -> None:
+        with open(DATA_PATH + 'selectAllClients.json', encoding = 'utf-8') as file:
+            data = dict(json.load(file))
 
-    def redraw(self):
+        for item in data:
+            ClientLine(self.__list, data[item]).pack(fill = 'x')
+
+    # redraw the window to update info
+    def redraw(self) -> None:
         self.__title.pack_forget()
         self.__list.pack_forget()
 
         self.__title = ctk.CTkFrame(self)
         self.__list = ctk.CTkScrollableFrame(self, fg_color = 'white')
-
-        with open('./temp/selectAllClients.json', encoding = 'utf-8') as file:
-            self.__data = dict(json.load(file))
 
         self.__create_title_layout()
         self.__create_list_layout()
